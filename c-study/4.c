@@ -41,3 +41,4 @@ int main(void)
     printf("%d", max - min);
 
 }
+
