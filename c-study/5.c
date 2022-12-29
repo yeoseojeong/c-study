@@ -6,13 +6,12 @@ int main(void)
     unsigned char c[3][10] = { 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29, 31,33,35,37,39,41,43,47,49,51,53,55,57,59,100 };
     unsigned char *p = &c[0][0];
 
-
    
 
+    unsigned char max = c[0][0];
+    unsigned char min = c[0][0];
+
    
-     int max =c[0][0];
-     int min =c[0][0];
-  
     
     for (i = 0; i < 3; i++)
     {
