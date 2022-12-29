@@ -7,7 +7,7 @@ int main(void)
     int i;
     int cnt = 0;
 
-    gets_s(str,101);
+    gets_s(str);
 
     for (i = 0; str[i] != NULL; i++)
     {
