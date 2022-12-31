@@ -1,0 +1,352 @@
+//1-7
+
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	puts("1부터 n까지의 총합을 구합니다.\n");
+	printf("n의 값: ");
+	scanf("%d", &n);
+	int sum = 0;
+	int i = 1;
+	while (i <= n)
+	{
+		sum += i;
+		i++;
+	}
+	printf("1부터 %d까지의 총합은 %d입니다.\n", n, sum);
+
+	return 0;
+}
+
+
+//1-8
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	puts("1부터 n까지의 총합을 구합니다.\n");
+	printf("n의 값: ");
+	scanf("%d", &n);
+
+	int sum = 0;
+	for (int i = 1; i <= n; i++)
+
+		sum += i;
+
+	printf("1부터 %d까지의 총합은 %d입니다.\n", n, sum);
+
+	return 0;
+}
+
+
+//연습문제 7
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	puts("1부터 n까지의 총합을 구합니다.\n");
+	printf("n의 값: ");
+	scanf("%d", &n);
+
+	int sum = 0;
+	for (int i = 1; i <= n; i++)
+
+		sum += i;
+
+
+	for (int i = 1; i < n; i++)
+	{
+		printf("%d +", i);
+		
+	}
+ printf("%d = %d\n", n, sum);
+	return 0;
+}
+
+
+//연습문제 8
+
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	puts("1부터 n까지의 총합을 구합니다.\n");
+	printf("n의 값: ");
+	scanf("%d", &n);
+
+	int sum = 0;
+
+
+		printf("%d", (1 + n) * (n / 2));
+	return 0;
+}
+
+
+
+//연습문제 9
+#include<stdio.h>
+
+int sumof(int a, int b)
+{
+
+	int sum = 0;
+	if (a > b)
+	{
+		for (int i = b; i <= a; i++)
+		{
+			sum = sum + i;
+
+		}
+	}
+	else
+	{
+		for (int i = a; i <= b; i++)
+		{
+			sum = sum + i;
+
+		}
+	}
+	
+	return sum;
+}
+
+int main(void)
+{
+	int a;
+	int b;
+	scanf("%d", &a);
+	scanf("%d", &b);
+
+	
+
+	printf("%d", sumof(a,b));
+
+}
+
+//1-9
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	puts("1부터 n까지의 총 합을 구합니다.");
+
+	do
+	{
+		printf("n값: ");
+		scanf("%d", &n);
+	} while (n <= 0);
+
+	int sum = 0;
+	for (int i = 1; i <= n; i++)
+	
+		sum += i;
+
+	printf("1부터 %d까지의 총합은 %d입니다.\n", n, sum);
+
+	return 0;
+}
+ 
+ 
+ //연습문제 10
+ #include <stdio.h>
+
+int main(void)
+{
+    int a, b;
+
+    printf("a값: ");
+    scanf("%d", &a);
+
+    while (1) {
+        printf("b값: ");
+        scanf("%d", &b);
+        if (b > a)
+        {
+            break;
+        }
+        printf("a보다 큰 값을 입력하세요!\n");
+    }
+
+    printf("%d\n", b - a);
+
+    return 0;
+}
+
+
+//연습문제 11
+#include <stdio.h>
+
+int main(void)
+{
+    int n;
+
+    do {
+        printf("양의 정수: ");
+        scanf("%d", &n);
+    } while (n <= 0);
+
+    int cnt = 0;     
+    while (n > 0) {
+        n = n/ 10; 
+        cnt++;
+    }
+
+    printf("그 수는 %d자리입니다.\n", cnt);
+
+    return 0;
+}
+
+//1c-2
+#include <stdio.h>
+
+int main(void)
+{
+    int no;
+
+    printf("2자리 양수를 입력하세요.\n");
+
+    do {
+        printf("수는: ");
+        scanf("%d", &no);
+    } while (no < 10 || no > 99);
+
+    printf("변수 no값은 %d이 되었습니다.\n", no);
+
+    return 0;
+}
+
+//1-10
+#include <stdio.h>
+
+int main(void)
+{
+    printf("----- 곱셈표 -----\n");
+
+    for (int i = 1; i <= 9; i++)
+    {
+        for (int j = 1; j <= 9; j++)
+            printf("%3d", i * j);
+        putchar('\n');
+    }
+
+    return 0;
+}
+
+
+//연습문제 12
+#include <stdio.h>
+
+int main(void)
+{
+    printf("   |");
+    for (int i = 1; i <= 9; i++)
+    {
+        printf("%3d", i);
+    }
+        printf("\n---+---------------------------\n");
+
+        for (int i = 1; i <= 9; i++)
+        {
+            printf("%2d |", i);
+            for (int j = 1; j <= 9; j++)
+            {
+                printf("%3d", i * j);
+            }
+                putchar('\n');
+            
+        }
+
+    return 0;
+}
+
+
+//연습문제 13
+#include <stdio.h>
+
+int main(void)
+{
+    printf("   |");
+    for (int i = 1; i <= 9; i++)
+    {
+        printf("%3d", i);
+    }
+        printf("\n---+---------------------------\n");
+
+        for (int i = 1; i <= 9; i++)
+        {
+            printf("%2d |", i);
+            for (int j = 1; j <= 9; j++)
+            {
+                printf("%3d", i + j); //여기만 *을 +로 바꿔줌
+            }
+                putchar('\n');
+            
+        }
+
+    return 0;
+}
+
+//연습문제 14
+#include<stdio.h>
+int main(void)
+{
+	int a;
+
+	scanf("%d", &a);
+	if(a>0)
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < a; j++)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+//연습문제 15
+#include<stdio.h>
+int main(void)
+{
+	int a,b;
+
+	scanf("%d", &a);
+	scanf("%d", &b);
+	if(a>0 && b>0)
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < b; j++)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+//1-11
+#include <stdio.h>
+
+int main(void)
+{
+    int n;
+    do {
+        printf("몇 단 삼각형입니까?: ");
+        scanf("%d", &n);
+    } while (n <= 0);
+   
+    for (int i = 1; i <= n; i++) 
+    {
+        for (int j = 1; j <= i; j++)
+            putchar('*');
+        putchar('\n');
+    }
+
+    return 0;
+}
+
+
+
+
