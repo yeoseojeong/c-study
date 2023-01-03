@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int maxof(const int a[], int n)
+int minof(const int a[], int n)
 {
     int min = a[0];            
     for (int i = 1; i < n; i++)
@@ -26,10 +26,82 @@ int main(void)
         printf("height[%d] : ", i);
         scanf("%d", &height[i]);
     }
-    printf("최솟값은 %d입니다.\n", maxof(height, number));
+    printf("최솟값은 %d입니다.\n", minof(height, number));
     free(height);                             
 
     return 0;
 }
+
+
+//연습문제 2
+#include <stdio.h>
+#include <stdlib.h>
+
+int sumof(const int a[], int n)
+{
+    int result = a[0];
+    for (int i = 1; i < n; i++)
+    { 
+        
+        result = result + a[i];
+    }
+    return result;
+}
+
+int main(void)
+{
+    int number;
+    printf("사람 수: ");
+    scanf("%d", &number);
+    int* height = calloc(number, sizeof(int));
+
+    printf("%d명의 키를 입력하세요.\n", number);
+    for (int i = 0; i < number; i++)
+    {
+        printf("height[%d] : ", i);
+        scanf("%d", &height[i]);
+    }
+    printf("합계는 %d입니다.\n", sumof(height, number));
+    free(height);
+
+    return 0;
+}
+
+//연습문제3
+#include <stdio.h>
+#include <stdlib.h>
+
+int aveof(const int a[], int n)
+{
+    int total = a[0];
+    int result = 0;
+    for (int i = 1; i < n; i++)
+    { 
+        
+        total = total + a[i];
+        result = total / n;
+    }
+    return result;
+}
+
+int main(void)
+{
+    int number;
+    printf("사람 수: ");
+    scanf("%d", &number);
+    int* height = calloc(number, sizeof(int));
+
+    printf("%d명의 키를 입력하세요.\n", number);
+    for (int i = 0; i < number; i++)
+    {
+        printf("height[%d] : ", i);
+        scanf("%d", &height[i]);
+    }
+    printf("평균은은 % d입니다.\n", aveof(height, number));
+    free(height);
+
+    return 0;
+}
+
 
 
