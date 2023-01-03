@@ -104,4 +104,342 @@ int main(void)
 }
 
 
+//연습문제 4
+
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+int maxof(const int a[], int n)
+{
+    int max = a[0];            
+    for (int i = 1; i < n; i++)
+    {
+        if (a[i] > max) max = a[i];
+    }
+        return max;
+}
+
+int main(void)
+{
+    srand(time(NULL));
+  
+    int number = 5+rand()%16;        
+    
+    int* height = calloc(number, sizeof(int));  
+
+    for (int i = 0; i < number; i++)
+    {
+        height[i] = 100 + rand() % 90;          
+        printf("height[%d] = %d\n", i, height[i]);
+    }
+    printf("최댓값은 %d입니다.\n", maxof(height, number));
+    free(height);                              
+
+    return 0;
+}
+
+
+
+//연습문제 5
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#define swap(type, x, y)  do { type t = x; x = y; y = t; } while (0)
+
+void ary_reverse(int a[], int n)
+{
+
+    for (int i = 0; i < n / 2; i++)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            printf("%d ", a[i]);
+         
+        }
+        putchar('\n');
+        printf("a[%d]와 a[%d]를 교환합니다.\n", i, n - i - 1);
+  
+        swap(int, a[i], a[n - i - 1]);
+    }
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+        
+    }
+    putchar('\n');
+  
+}
+
+int main(void)
+{
+    int nx;     
+
+    printf("요소 개수: ");
+    scanf("%d", &nx);
+
+    int* x = calloc(nx, sizeof(int));  
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] : ", i);
+        scanf("%d", &x[i]);
+    }
+    ary_reverse(x, nx);                 
+   
+    printf("역순 정렬을 종료합니다.\n");
+  
+    free(x);                           
+
+    return 0;
+}
+
+
+
+
+// 연습문제 7　
+#include <stdio.h>
+#include <stdlib.h>
+
+void ary_copy(int a[], const int b[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        a[i] = b[i];
+    }
+}
+
+int main(void)
+{
+    int n;      
+
+    printf("개수: ");
+    scanf("%d", &n);
+
+    int* a = calloc(n, sizeof(int));   
+    int* b = calloc(n, sizeof(int));    
+
+    printf("%d개의 정수를 입력하세요.\n", n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("a[%d] : ", i);
+        scanf("%d", &a[i]);
+    }
+
+    ary_copy(b, a, n);                 
+
+    printf("배열 x의 모든 요소를 배열 y에 복사했습니다.\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("b[%d] = %d\n", i, b[i]);
+    }
+
+    free(a);                            
+    free(b);                          
+
+    return 0;
+}
+
+
+// 연습문제 8
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void ary_rcopy(int a[], const int b[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        a[i] = b[n-i-1];
+    }
+}
+
+int main(void)
+{
+    int n;      
+
+    printf("개수: ");
+    scanf("%d", &n);
+
+    int* a = calloc(n, sizeof(int));   
+    int* b = calloc(n, sizeof(int));    
+
+    printf("%d개의 정수를 입력하세요.\n", n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("a[%d] : ", i);
+        scanf("%d", &a[i]);
+    }
+
+    ary_rcopy(b, a, n);                 
+
+    printf("배열 x의 모든 요소를 배열 y에 복사했습니다.\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("b[%d] = %d\n", i, b[i]);
+    }
+
+    free(a);                            
+    free(b);                          
+
+    return 0;
+}
+
+
+
+//2-9
+
+#include<stdio.h>
+int main(void)
+{
+	unsigned long counter = 0;
+	for (int n = 2; n <= 1000; n++)
+	{
+		int i;
+		for (i = 2; i < n; i++)
+		{
+			counter++;
+			if (n % i == 0)
+			{
+				break;
+			}
+		}
+		if (n == i)
+		{
+			printf("%d\n", n);
+		}
+		
+	}
+	printf("나눗셈을 실행한 횟수: %lu\n", counter);
+	return 0;
+}
+
+
+//2-10
+#include<stdio.h>
+
+int main(void)
+{
+	int prime[500];
+	int ptr = 0;
+	unsigned long counter = 0;
+	prime[ptr++] = 2;
+	for (int n = 3; n <= 1000; n += 2)
+	{
+		int i;
+		for (i = 1; i < ptr; i++)
+		{
+			counter++;
+			if (n % prime[i] == 0)
+			{
+				break;
+			}
+		}
+
+		if (ptr == i)
+		{
+
+			prime[ptr++] = n;
+		}
+	}
+
+	for (int i = 0; i < ptr; i++)
+	{
+		printf("%d\n", prime[i]);
+	}
+	printf("나눗셈을 실행한 횟수:%lu\n", counter);
+	return 0;
+}
+
+
+
+//2-11
+
+#include <stdio.h>
+
+int main(void)
+{
+    int prime[500];                         
+    int ptr = 0;                           
+    unsigned long counter = 0;              
+   
+    prime[ptr++] = 2;                      
+    prime[ptr++] = 3;                      
+   
+    for (int n = 5; n <= 1000; n += 2)
+    {    
+        int i;
+        int flag = 0;
+        for (i = 1; counter++, prime[i] * prime[i] <= n; i++)
+        {
+            counter++;
+            if (n % prime[i] == 0)
+            {       
+                flag = 1;
+                break;                      
+            }
+        }
+        if (!flag)                         
+            prime[ptr++] = n;              
+    }
+    for (int i = 0; i < ptr; i++)
+    {
+        printf("%d\n", prime[i]);
+    }
+    printf("곱셈과 나눗셈을 실행한 횟수: %lu\n", counter);
+
+    return 0;
+}
+
+
+//2-12
+
+#include <stdio.h>
+
+
+int mdays[][12] = {
+    {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+    {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+};
+
+
+int isleap(int year)
+{
+    return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+}
+
+
+int dayof_year(int y, int m, int d)
+{
+    int days = d;       
+    for (int i = 1; i < m; i++)
+    {
+        days += mdays[isleap(y)][i - 1];
+    }
+   return days;
+}
+
+int main(void)
+{
+    int retry;      
+    do {
+        int year, month, day;       
+        
+        printf("년: ");  
+        scanf("%d", &year);
+        printf("월: ");  
+        scanf("%d", &month);
+        printf("일: ");  
+        scanf("%d", &day);
+       
+        printf("%d년의 %d일째입니다.\n",year, dayof_year(year, month, day));
+        printf("다시 할까요?(1 … 예 / 0 … 아니오): ");
+        scanf("%d", &retry);
+    } while (retry == 1);
+
+    return 0;
+}
 
