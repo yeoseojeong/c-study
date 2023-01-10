@@ -1,0 +1,256 @@
+//4-4,4-5a,4-5b,4-5c,4-5d,4-6
+
+#ifndef ___IntQueue
+#define ___IntQueue
+
+typedef struct {
+	int max;
+	int num;
+	int front;
+	int rear;
+	int* que;
+}IntQueue;
+
+int Initialize(IntQueue* q, int max);
+
+int	Enque(IntQueue* q, int x);
+
+int Deque(IntQueue* q, int* x);
+
+int Peek(const IntQueue* q, int* x);
+
+void Clear(IntQueue* q);
+
+int Capacity(const IntQueue* q);
+
+int Size(const IntQueue* q);
+
+int IsEmpty(const IntQueue* q);
+
+int IsFull(const IntQueue* q);
+
+int Search(const IntQueue* q, int x);
+
+void Print(const IntQueue* q);
+
+void Terminate(IntQueue* q);
+
+#endif
+
+#include<stdio.h>
+#include<stdlib.h>
+#include "IntQueue.h"
+
+int Initialize(IntQueue* q, int max)
+{
+	q->num = q->front = q->rear = 0;
+	if ((q->que = calloc(max, sizeof(int))) == NULL)
+	{
+		q->max = 0;
+		return -1;
+	}
+	q->max = max;
+	return 0;
+}
+
+int Enque(IntQueue* q, int x)
+{
+	if (q->num >= q->max)
+	{
+		return -1;
+	}
+	else
+	{
+		q->num++;
+		q->que[q->rear++] = x;
+		if (q->rear == q->max)
+		{
+			q->rear = 0;
+		}
+		return 0;
+	}
+}
+
+int Deque(IntQueue* q, int* x)
+{
+	if (q->num <= 0)
+	{
+		return -1;
+	}
+	else
+	{
+		q->num--;
+		*x = q->que[q->front++];
+		if (q->front == q->max)
+		{
+			q->front = 0;
+		}
+		return 0;
+	}
+}
+
+
+int Peek(const IntQueue * q, int* x)
+{
+	if (q->num <= 0)
+	{
+		return -1;
+	}
+	*x = q->que[q->front];
+	return 0;
+}
+
+void Clear(IntQueue* q)
+{
+	q->num = q->front = q->rear = 0;
+}
+
+int Capacity(const IntQueue* q)
+{
+	return q -> max;
+}
+
+int Size(const IntQueue* q)
+{
+	return q->num;
+}
+
+int IsEmpty(const IntQueue* q)
+{
+	return q->num <= 0;
+}
+
+int Full(IntQueue* q)
+{
+	return q->num >= q->max;
+}
+
+int Search(const IntQueue* q, int x)
+{
+	for (int i = 0; i < q->num; i++)
+	{
+		int idx;
+		if (q->que[idx = (i + q->front) % q->max] == x)
+		{
+			return idx;
+		}
+	}
+	return -1;
+}
+
+
+void Print(const IntQueue* q)
+{
+	for (int i = 0; i < q->max; i++)
+	{
+		printf("%d ", q->que[(i + q->front) % q->max]);
+	}
+	putchar('\n');
+}
+
+void Terminate(IntQueue* q)
+{
+	if (q->que != NULL)
+	{
+		free(q->que);
+	}
+	q->max = q->num = q->front = q->rear = 0;
+}
+
+#include <stdio.h>
+#include "IntQueue.h"
+
+int main(void)
+{
+	IntQueue que;
+
+	if (Initialize(&que, 64) == -1)
+	{
+		puts("큐의 생성에 실패하였습니다.");
+		return 1;
+	}
+	while (1) {
+		int m, x;
+
+		printf("현재 데이터 수: %d / %d\n", Size(&que), Capacity(&que));
+		printf("(1)인큐 (2)디큐 (3)피크 (4)출력 (0)종료: ");
+		scanf("%d", &m);
+
+		if (m == 0)
+		{
+			break;
+		}
+		switch (m)
+		{
+		case 1: 
+			printf("데이터: ");  
+			scanf("%d", &x);
+			if (Enque(&que, x) == -1)
+			{
+				puts("\a오류: 인큐에 실패하였습니다.");
+			}
+			break;
+
+		case 2: 
+			if (Deque(&que, &x) == -1)
+			{
+				puts("\a오류: 디큐에 실패하였습니다.");
+			}
+			else
+			{
+				printf("디큐한 데이터는 %d입니다.\n", x);
+			}
+				break;
+
+		case 3:
+			if (Peek(&que, &x) == -1)
+			{
+				puts("\a오류: 피크에 실패하였습니다.");
+			}
+			else
+			{
+				printf("피크한 데이터는 %d입니다.\n", x);
+			}
+			break;
+
+		case 4:
+			Print(&que);
+			break;
+		}
+	}
+	Terminate(&que);
+	return 0;
+}
+
+//4c-1
+
+#include <stdio.h>
+
+#define N  10       
+
+int main()
+{
+    int a[N];       
+    int cnt = 0;   
+    int retry;     
+    
+    puts("정수를 입력하세요.");
+
+    do {
+        printf("%d번째 정수: ", cnt + 1);
+        scanf("%d", &a[cnt++ % N]);
+        printf("계속할까요?(Yes…1／No…0）：");
+        scanf("%d", &retry);
+    } while (retry == 1);
+   
+    int i = cnt - N;
+    if (i < 0)
+    {
+        i = 0;
+    }
+    for (; i < cnt; i++)
+    {
+        printf("%2d번째 정수 = %d\n", i + 1, a[i % N]);
+    }
+    return 0;
+}
