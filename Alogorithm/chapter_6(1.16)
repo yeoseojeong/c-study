@@ -1,0 +1,334 @@
+//6-11
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define swap(type, x, y) do { type t = x; x = y; y = t; } while (0)
+
+int sort3elem(int x[], int a, int b, int c)
+{
+    if (x[b] < x[a]) swap(int, x[b], x[a]);
+    if (x[c] < x[b]) swap(int, x[c], x[b]);
+    if (x[b] < x[a]) swap(int, x[b], x[a]);
+    return b;
+}
+
+void quick(int a[], int left, int right)
+{
+    int pl = left;                              
+    int pr = right;                               
+    int m = sort3elem(a, pl, (pl + pr) / 2, pr); 
+    int x = a[m];                                
+
+    swap(int, a[m], a[right - 1]);          
+    pl++;                                  
+    pr -= 2;                               
+
+    do {
+        while (a[pl] < x) pl++;
+        while (a[pr] > x) pr--;
+        if (pl <= pr)
+        {
+            swap(int, a[pl], a[pr]);
+            pl++;
+            pr--;
+        }
+    } while (pl <= pr);
+
+    if (left < pr)  quick(a, left, pr);
+    if (pl < right) quick(a, pl, right);
+}
+
+int main(void)
+{
+    int nx;
+
+    puts("퀵 정렬");
+    printf("요소 개수: ");
+    scanf("%d", &nx);
+   
+    int* x = calloc(nx, sizeof(int));   
+
+    for (int i = 0; i < nx; i++) 
+    {
+        printf("x[%d] : ", i);
+        scanf("%d", &x[i]);
+    }
+
+    quick(x, 0, nx - 1);    
+
+    puts("오름차순으로 정렬했습니다.");
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] = %d\n", i, x[i]);
+    }
+    free(x);                
+
+    return 0;
+}
+
+
+//6-12
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int int_cmp(const int *a, const int *b)
+{
+    if (*a < *b)
+    {
+        return -1;
+    }
+    else if (*a > *b)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+
+    }
+}
+
+int main(void)
+{
+    int nx;
+    printf("qsort에 의한 정렬\n");
+    printf("요소 개수: ");
+    scanf("%d", &nx);
+   
+    int *x = calloc(nx, sizeof(int));  
+    
+    for (int i = 0; i < nx; i++) 
+    {
+        printf("x[%d] : ", i);
+        scanf("%d", &x[i]);
+    }
+    qsort(x,                                           
+          nx,                                           
+          sizeof(int),                                 
+          (int (*)(const void *, const void *))int_cmp 
+         );
+
+    puts("오름차순으로 정렬했습니다.");
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] = %d\n", i, x[i]);
+    }
+    free(x);                           
+
+    return 0;
+}
+
+
+//6-13
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char name[10];  
+    int  height;    
+    int  weight;   
+} Person;
+
+
+int npcmp(const Person *x, const Person *y)
+{
+    return strcmp(x->name, y->name);
+}
+
+
+int hpcmp(const Person *x, const Person *y)
+{
+    return x->height < y->height ? -1 :
+           x->height > y->height ?  1 : 0;
+}
+
+int wpcmp(const Person *x, const Person *y)
+{
+    return x->weight < y->weight ?  1 :
+           x->weight > y->weight ? -1 : 0;
+}
+
+void print_person(const Person x[], int no)
+{
+    for (int i = 0; i < no; i++)
+    {
+        printf("%-10s %dcm %dkg\n", x[i].name, x[i].height, x[i].weight);
+    }
+}
+
+int main()
+{
+    Person x[]= {
+        {"sunmi", 170, 52},
+        {"yoobin", 180, 70},
+        {"sohee", 172, 63},
+        {"jina", 165, 50},
+    };
+
+    int nx = sizeof(x) / sizeof(x[0]);     
+
+    puts("정렬 전");
+    print_person(x, nx);
+
+    
+    qsort(x, nx, sizeof(Person), (int (*)(const void *, const void *))npcmp);
+    puts("\n이름 오름차순으로 정렬 후");
+    print_person(x, nx);
+
+ 
+    qsort(x, nx, sizeof(Person), (int (*)(const void *, const void *))hpcmp);
+    puts("\n키 오름차순으로 정렬 후");
+    print_person(x, nx);
+
+
+    qsort(x, nx, sizeof(Person), (int (*)(const void *, const void *))wpcmp);
+    puts("\n몸무게 내림차순으로 정렬 후体重降順ソート後");
+    print_person(x, nx);
+
+    return 0;
+}
+
+
+
+//6-14
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void merge(const int a[], int na, const int b[], int nb, int c[])
+{
+    int pa = 0;
+    int pb = 0;
+    int pc = 0;
+    while (pa < na && pb < nb)
+        c[pc++] = (a[pa] <= b[pb]) ? a[pa++] : b[pb++];
+    while (pa < na)
+        c[pc++] = a[pa++];
+    while (pb < nb)
+        c[pc++] = b[pb++];
+}
+
+int main(void)
+{
+    int na, nb;
+    printf("a의 요소 개수: ");   scanf("%d", &na);
+   printf("b의 요소 개수: ");   scanf("%d", &nb);
+    
+   int* a = calloc(na, sizeof(int));
+    int* b = calloc(nb, sizeof(int));
+    int* c = calloc(na + nb, sizeof(int));
+   
+    printf("a[0] : ");
+    scanf("%d", &a[0]);
+   
+    for (int i = 1; i < na; i++)
+    {
+        do {
+            printf("a[%d] : ", i);
+            scanf("%d", &a[i]);
+        } while (a[i] < a[i - 1]);
+    }
+    printf("b[0] : ");
+    scanf("%d", &b[0]);
+   
+    for (int i = 1; i < nb; i++)
+    {
+        do {
+            printf("b[%d] : ", i);
+            scanf("%d", &b[i]);
+        } while (b[i] < b[i - 1]);
+    }
+
+    merge(a, na, b, nb, c);
+    puts("배열 a와 b를 병합하여 배열 c에 저장했습니다.");
+   
+    for (int i = 0; i < na + nb; i++)
+    {
+        printf("c[%2d] = %2d\n", i, c[i]);
+    }
+  
+    free(a);
+    free(b);
+    free(c);
+
+    return 0;
+}
+
+
+//6-15
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+static int* buff;          
+
+
+static void __mergesort(int a[], int left, int right)
+{
+    if (left < right)
+    {
+        int center = (left + right) / 2;
+        int p = 0;
+        int i;
+        int j = 0;
+        int k = left;
+        __mergesort(a, left, center);
+        __mergesort(a, center + 1, right);
+        for (i = left; i <= center; i++)
+        {
+            buff[p++] = a[i];
+        }
+        while (i <= right && j < p)
+        {
+            a[k++] = (buff[j] <= a[i]) ? buff[j++] : a[i++];
+        }
+        while (j < p)
+        {
+            a[k++] = buff[j++];
+        }
+
+    }
+}
+
+int mergesort(int a[], int n)
+{
+    if ((buff = calloc(n, sizeof(int))) == NULL)
+        return -1;
+    __mergesort(a, 0, n - 1);      
+    free(buff);
+    return 0;
+}
+
+int main(void)
+{
+    int nx;
+    puts("병합 정렬");
+    printf("요소 개수: ");
+    scanf("%d", &nx);
+  
+    int* x = calloc(nx, sizeof(int));
+
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] : ", i);
+        scanf("%d", &x[i]);
+    }
+
+    mergesort(x, nx);
+
+    puts("오름차순으로 정렬했습니다.");
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] = %d\n", i, x[i]);
+    }
+    free(x);                    
+
+    return 0;
+}
+
+
