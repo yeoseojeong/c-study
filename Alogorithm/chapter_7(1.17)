@@ -1,0 +1,331 @@
+//7-1
+
+#include <stdio.h>
+#include <limits.h>
+
+
+void str_dump(const char *s)
+{
+    for ( ; *s != '\0'; s++) 
+    {
+        printf("%c  %0*X  ", *s, (CHAR_BIT + 3) / 4, *s);
+       
+        for (int i = CHAR_BIT - 1; i >= 0; i--)
+        {
+            putchar(((*s >> i) & 1U) ? '1' : '0');
+        }
+        putchar('\n');
+    }
+}
+
+int main(void)
+{
+    str_dump("STRING");
+    return 0;
+}
+
+
+//7-2
+
+#include <stdio.h>
+
+int main(void)
+{
+    char st[8];
+    st[0] = 'A';
+    st[1] = 'B';
+    st[2] = 'C';
+    st[3] = 'D';
+    st[4] = '\0';
+    printf("문자열 st에는 \"%s\"가 들어 있습니다.\n", st);
+
+    return 0;
+}
+
+
+//7-3
+#include <stdio.h>
+
+int main(void)
+{
+    char st[8] = "ABCD";
+    printf("문자열 st에는 \"%s\"가 들어 있습니다.\n", st);
+
+    return 0;
+}
+
+
+// 7-4
+
+#include <stdio.h>
+
+int main(void)
+{
+    char* pt = "12345";
+    printf("포인터 pt는 \"%s\"를(을) 가리킵니다.\n", pt);
+
+    return 0;
+}
+
+
+//7-5
+
+#include <stdio.h>
+
+
+void swap_ptr(char** x, char** y)
+{
+    char* tmp = *x;
+    *x = *y;
+    *y = tmp;
+}
+
+int main(void)
+{
+    char* s1 = "ABCD";     
+    char* s2 = "EFGH";      
+
+    printf("포인터 s1은 \"%s\"를 가리킵니다.\n", s1);
+    printf("포인터 s2는 \"%s\"를 가리킵니다.\n", s2);
+
+    swap_ptr(&s1, &s2);
+
+    puts("\n포인터 s1과 s2의 값을 서로 교환했습니다.\n");
+
+    printf("포인터 s1은 \"%s\"를 가리킵니다.\n", s1);
+    printf("포인터 s2는 \"%s\"를 가리킵니다.\n", s2);
+
+    return 0;
+}
+
+
+// 7-6
+
+#include <stdio.h>
+
+int str_len(const char* s)
+{
+    int len = 0;
+
+    while (s[len])
+        len++;
+    return len;
+}
+
+int main(void)
+{
+    char str[256];
+    
+    printf("문자열: ");
+    scanf("%s", str);
+    printf("이 문자열의 길이는 %d입니다.\n", str_len(str));
+
+    return 0;
+}
+
+
+//7-7
+
+#include <stdio.h>
+
+int str_len(const char* s)
+{
+    int len = 0;
+    while (*s++)
+        len++;
+    return len;
+}
+
+int main(void)
+{
+    char str[256];
+    
+    printf("문자열: ");
+    scanf("%s", str);
+    printf("이 문자열의 길이는 %d입니다.\n", str_len(str));
+
+    return 0;
+}
+
+
+// 7-8
+
+#include <stdio.h>
+
+
+int str_len(const char* s)
+{
+    const char* p = s;
+    while (*s)
+        s++;
+    return s - p;
+}
+
+int main(void)
+{
+    char str[256];
+   
+    printf("문자열: ");
+    scanf("%s", str);
+    printf("이 문자열의 길이는 %d입니다.\n", str_len(str));
+
+    return 0;
+}
+
+
+//7-9
+#include <stdio.h>
+
+int str_chr(const char* s, int c)
+{
+    int i = 0;
+    c = (char)c;
+    
+    while (s[i] != c) {
+        if (s[i] == '\0')
+        {
+            return -1;
+        }
+        i++;
+    }
+    return i;                  
+}
+int main(void)
+{
+    char str[128];
+    char tmp[128];
+    int  ch;                    
+    int  idx;
+
+    printf("문자열: ");
+    scanf("%s", str);
+
+    printf("검색할 문자: ");
+    scanf("%s", tmp);           
+   
+    ch = tmp[0];                
+
+    if ((idx = str_chr(str, ch)) == -1)
+    {
+        printf("문자 '%c'은(는) 문자열에 없습니다.\n", ch);
+    }
+    else
+    {
+        printf("문자 '%c'은(는) %d번째에 있습니다.\n", ch, idx + 1);
+    }
+    return 0;
+}
+
+
+// 7-10
+#include <stdio.h>
+
+
+int str_cmp(const char* s1, const char* s2)
+{
+    while (*s1 == *s2)
+    {
+        if (*s1 == '\0')        
+            return 0;
+        s1++;
+        s2++;
+    }
+    return (unsigned char)*s1 - (unsigned char)*s2;
+}
+int main(void)
+{
+    char st[128];
+    
+    puts("\"ABCD\"와 비교합니다.");
+    puts("\"XXXX\"면 종료합니다.");
+   
+    while (1)
+    {
+        printf("문자열 st: ");
+        scanf("%s", st);
+
+        if (str_cmp("XXXX", st) == 0)
+        {
+            break;
+        }
+        printf("str_cmp(\"ABCD\", st) = %d\n", str_cmp("ABCD", st));
+    }
+
+    return 0;
+}
+
+
+// 7-11
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    char st[128];
+    
+    puts("\"STRING\"의 처음 3개의 문자와 비교합니다.");
+    puts("\"XXXX\"를 입력하면 종료합니다.");
+   
+    while (1)
+    {
+        printf("문자열 st: ");
+        scanf("%s", st);
+        if (strncmp("XXXX", st, 3) == 0)
+        {
+            break;
+        }
+        printf("strncmp(\"STRING\", st, 3) = %d\n", strncmp("STRING", st, 3));
+    }
+
+    return 0;
+}
+
+// 연습문제 1
+#include <stdio.h>
+
+int main(void)
+{
+    char st[8];
+
+    st[0] = 'A';
+    st[1] = 'B';
+    st[2] = 'C';
+    st[3] = 'D';
+    st[4] = '\0';
+
+    st[5] = 'E';
+    st[6] = 'F';
+    st[7] = 'G';
+
+    printf("문자열 st에는 \"%s\"가 저장되어 있습니다.\n", st);
+
+    return 0;
+}
+
+
+// 연습문제 2
+#include <stdio.h>
+
+
+#define swap(type, x, y)  do { type t = x; x = y; y = t; } while (0)
+
+int main(void)
+{
+    char *s1 = "ABCD";     
+    char *s2 = "EFGH";      
+
+    printf("포인터 s1은 \"%s\"를 가리킵니다.\n", s1);
+    printf("포인터 s2은 \"%s\"를 가리킵니다.\n", s2);
+
+    swap(char*, s1, s2);
+
+    puts("\n포인터 s1과 s2의 값을 서로 교환했습니다.\n");
+
+    printf("포인터 s1은 \"%s\"를 가리킵니다.\n", s1);
+    printf("포인터 s2은 \"%s\"를 가리킵니다.\n", s2);
+
+    return 0;
+}
+
+
+
