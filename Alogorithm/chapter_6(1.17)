@@ -1,0 +1,117 @@
+// 6-16
+#include <stdio.h>
+#include <stdlib.h>
+
+#define swap(type, x, y)  do { type t = x; x = y; y = t; } while (0)
+
+
+static void downheap(int a[], int left, int right)
+{
+    int temp = a[left];             
+    int child;
+    int parent;
+   
+    for (parent = left; parent < (right + 1) / 2; parent = child)
+    {
+        int cl = parent * 2 + 1;    
+        int cr = cl + 1;            
+        child = (cr <= right && a[cr] > a[cl]) ? cr : cl;  
+        if (temp >= a[child])
+            break;
+        a[parent] = a[child];
+    }
+    a[parent] = temp;
+}
+
+
+void heapsort(int a[], int n)
+{
+    for (int i = (n - 1) / 2; i >= 0; i--)
+    {
+        downheap(a, i, n - 1);
+    }
+    for (int i = n - 1; i > 0; i--)
+    {
+        swap(int, a[0], a[i]);
+        downheap(a, 0, i - 1);
+    }
+}
+
+int main(void)
+{
+    int nx;
+    puts("힙 정렬");
+    printf("요소 개수: ");
+    scanf("%d", &nx);
+    
+    int* x = calloc(nx, sizeof(int)); 
+   
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] : ", i);
+        scanf("%d", &x[i]);
+    }
+    heapsort(x, nx);   
+    puts("오름차순으로 정렬했습니다.");
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] = %d\n", i, x[i]);
+    }
+    free(x);           
+
+    return 0;
+}
+
+//6-17
+#include <stdio.h>
+#include <stdlib.h>
+
+void counting(int a[], int n, int max)
+{
+    int *f = calloc(max + 1, sizeof(int));      
+    int *b = calloc(n,       sizeof(int));      
+
+    for (int i = 0;     i <= max; i++) f[i] = 0;              
+    for (int i = 0;     i < n;    i++) f[a[i]]++;            
+    for (int i = 1;     i <= max; i++) f[i] += f[i - 1];     
+    for (int i = n - 1; i >= 0;   i--) b[--f[a[i]]] = a[i];   
+    for (int i = 0;     i < n;    i++) a[i] = b[i];           
+
+    free(b);
+    free(f);
+}
+
+int main(void)
+{
+    int nx;
+    const int max = 100;           
+    puts("도수 정렬");
+    printf("요소 개수: ");
+    
+    scanf("%d", &nx);
+    
+    int *x = calloc(nx, sizeof(int));   
+  
+    printf("0～%d의 정수를 입력하세요.\n", max);
+
+    for (int i = 0; i < nx; i++) 
+    {
+        do {
+            printf("x[%d] : ", i);
+            scanf("%d", &x[i]);
+        } while (x[i] < 0 || x[i] > max);
+    }
+
+    counting(x, nx, max);       
+    puts("오름차순으로 정렬했습니다.");
+
+    for (int i = 0; i < nx; i++)
+    {
+        printf("x[%d] = %d\n", i, x[i]);
+    }
+    free(x);                    
+
+    return 0;
+}
+
+
