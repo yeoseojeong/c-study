@@ -1,1 +1,328 @@
 
+// 8-1a,8-2b
+#ifndef ___LinkedList
+#define ___LinkedList
+
+#include "Member.h"
+
+
+typedef struct __node {
+    Member         data;    
+    struct __node *next;   
+} Node;
+
+
+typedef struct {
+    Node *head;    
+    Node *crnt;     
+} List;
+
+
+void Initialize(List *list);
+
+Node *Search(List *list, const Member *x,
+                         int compare(const Member *x, const Member *y));
+
+
+void InsertFront(List *list, const Member *x);
+
+
+void InsertRear(List *list, const Member *x);
+
+void RemoveFront(List *list);
+
+
+void RemoveRear(List *list);
+
+
+void RemoveCurrent(List *list);
+
+
+void Clear(List *list);
+
+
+void PrintCurrent(const List *list);
+
+
+void PrintLnCurrent(const List *list);
+
+
+void Print(const List *list);
+
+
+void Terminate(List *list);
+
+#endif
+
+
+
+// 8-2a,b,c,d,e,f,g,h,i
+#include <stdio.h>
+#include <stdlib.h>
+#include "Member.h"
+#include "LinkedList.h"
+
+
+static Node *AllocNode(void)
+{
+    return calloc(1, sizeof(Node));
+}
+
+static void SetNode(Node *n, const Member *x, const Node *next)
+{
+    n->data = *x;     
+    n->next = next;    
+}
+
+
+void Initialize(List *list)
+{
+    list->head = NULL;  
+    list->crnt = NULL;  
+}
+
+
+Node *Search(List *list, const Member *x,
+                         int compare(const Member *x, const Member *y))
+{
+    Node *ptr = list->head;
+    while (ptr != NULL) 
+    {
+        if (compare(&ptr->data, x) == 0)
+        {  
+            list->crnt = ptr;
+            return ptr;             
+        }
+        ptr = ptr->next;             
+    }
+    return NULL;                      
+
+void InsertFront(List *list, const Member *x)
+{
+    Node *ptr = list->head;
+    list->head = list->crnt = AllocNode();
+    SetNode(list->head, x, ptr);
+}
+
+void InsertRear(List *list, const Member *x)
+{
+    if (list->head == NULL)                
+        InsertFront(list, x);               
+    else 
+    {
+        Node *ptr = list->head;
+        while (ptr->next != NULL)
+            ptr = ptr->next;
+        ptr->next = list->crnt = AllocNode();
+        SetNode(ptr->next, x, NULL);
+    }
+}
+
+
+void RemoveFront(List *list)
+{
+    if (list->head != NULL) 
+    {
+        Node *ptr = list->head->next;      
+        free(list->head);                  
+        list->head = list->crnt = ptr;      
+    }
+}
+
+
+void RemoveRear(List *list)
+{
+    if (list->head != NULL)
+    {
+        if (list->head->next == NULL)      
+            RemoveFront(list);              
+        else
+        {
+            Node *ptr = list->head;
+            Node *pre;
+            while (ptr->next != NULL)
+            {
+                pre = ptr;
+                ptr = ptr->next;
+            }
+            pre->next = NULL;            
+            free(ptr);                     
+            list->crnt = pre;
+        }
+    }
+}
+
+
+void RemoveCurrent(List *list)
+{
+    if (list->head != NULL)
+    {
+        if (list->crnt == list->head)  
+            RemoveFront(list);          
+        else
+        {
+            Node *ptr = list->head;
+            while (ptr->next != list->crnt)
+                ptr = ptr->next;
+            ptr->next = list->crnt->next;
+            free(list->crnt);
+            list->crnt = ptr;
+        }
+    }
+}
+
+
+void Clear(List *list)
+{
+    while (list->head != NULL)        
+        RemoveFront(list);            
+    list->crnt = NULL;
+}
+
+void PrintCurrent(const List *list)
+{
+    if (list->crnt == NULL)
+        printf("선택한 노드가 없습니다.");
+    else
+        PrintMember(&list->crnt->data);
+}
+
+
+void PrintLnCurrent(const List *list)
+{
+    PrintCurrent(list);
+    putchar('\n');
+}
+
+
+void Print(const List *list)
+{
+    if (list->head == NULL)
+        puts("노드가 없습니다.");
+    else
+    {
+        Node *ptr = list->head;
+        puts("【모두 보기】");
+        while (ptr != NULL) 
+        {
+            PrintLnMember(&ptr->data);
+            ptr = ptr->next;          
+        }
+    }
+}
+
+
+void Terminate(List *list)
+{
+    Clear(list);                      
+}
+
+
+// 8-3
+#include <stdio.h>
+#include "Member.h"
+#include "LinkedList.h"
+
+
+typedef enum {
+    TERMINATE, INS_FRONT, INS_REAR,  RMV_FRONT, RMV_REAR, PRINT_CRNT,
+    RMV_CRNT,  SRCH_NO,   SRCH_NAME, PRINT_ALL, CLEAR
+} Menu;
+
+
+Menu SelectMenu(void)
+{
+    int  ch;
+    char *mstring[] = {
+        "머리에 노드를 삽입",  "꼬리에 노드를 삽입", "머리 노드를 삭제",
+        "꼬리 노드를 삭제",   "선택한 노드를 출력", "선택한 노드를 삭제",
+        "번호로 검색",       "이름으로 검색",     "모든 노드를 출력",
+        "모든 노드를 삭제",
+    };
+    do {
+        for (int i = TERMINATE; i < CLEAR; i++) 
+        {
+            printf("(%2d) %-18.18s  ", i + 1, mstring[i]);
+            if ((i % 3) == 2)
+                putchar('\n');
+        }
+        printf("(0) 종료: ");
+        scanf("%d", &ch);
+    } while (ch < TERMINATE || ch > CLEAR);
+    return (Menu)ch;
+}
+
+
+int main(void)
+{
+    Menu menu;
+    List list;
+    Initialize(&list);             
+    do {
+        Member x;
+        switch (menu = SelectMenu()) 
+        {
+         
+         case INS_FRONT :
+                x = ScanMember("머리에 삽입", MEMBER_NO | MEMBER_NAME);
+                InsertFront(&list, &x);
+                break;
+
+     
+         case INS_REAR :
+                x = ScanMember("꼬리에 삽입", MEMBER_NO | MEMBER_NAME);
+                InsertRear(&list, &x);
+                break;
+
+        
+         case RMV_FRONT :
+                RemoveFront(&list);
+                break;
+
+  
+         case RMV_REAR :
+                RemoveRear(&list);
+                break;
+
+         case PRINT_CRNT :
+                PrintLnCurrent(&list);
+                break;
+
+         
+         case RMV_CRNT :
+                RemoveCurrent(&list);
+                break;
+
+   
+         case SRCH_NO :
+                x = ScanMember("探索", MEMBER_NO);
+                if (Search(&list, &x, MemberNoCmp) != NULL)
+                    PrintLnCurrent(&list);
+                else
+                    puts("그 번호의 데이터가 없습니다.");
+                break;
+
+       
+         case SRCH_NAME :
+                x = ScanMember("探索", MEMBER_NAME);
+                if (Search(&list, &x, MemberNameCmp) != NULL)
+                    PrintLnCurrent(&list);
+                else
+                    puts("그 이름의 데이터가 없습니다.");
+                break;
+
+       
+         case PRINT_ALL :
+                Print(&list);
+                break;
+
+   
+         case CLEAR :
+                Clear(&list);
+                break;
+        }
+    } while (menu != TERMINATE);
+    Terminate(&list);                         
+
+    return 0;
+}
