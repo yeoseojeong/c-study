@@ -1,4 +1,4 @@
-//9-1
+//10-1
 #ifndef ___Member
 #define ___Member
 
@@ -25,7 +25,7 @@ Member ScanMember(const char* message, int sw);
 
 
 
-// 9-2
+// 10-2
 #include <stdio.h>
 #include <string.h>
 #include "Member.h"
