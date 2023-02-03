@@ -159,3 +159,116 @@ int main(void)
 
 
 
+//연습문제 6
+
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	puts("1부터 n까지의 총합을 구합니다.");
+	printf("n의 값: ");
+	scanf("%d", &n);
+	int sum = 0;
+	int i = 1;
+	while (i <= n)
+	{
+		sum += 1;
+		i++;
+	}
+	printf("1부터 %d까지의 총합은 %d 입니다.\n", n, sum);
+
+	if (i = n + 1)
+	{
+		printf("i와 n+1의 값은 같습니다.");
+	}
+	else
+	{
+		printf("i와 n+1의 값은 다릅니다.");
+	}
+	return 0;
+}
+
+
+
+//연습문제 7
+
+#include <stdio.h>
+
+int main(void)
+{
+    int n;
+
+    puts("1부터 n까지의 총합을 구합니다.");
+
+    printf("n값: ");
+    scanf("%d", &n);
+
+    int sum = 0;        
+
+    for (int i = 1; i <= n; i++)   
+        sum += i;                
+
+    for (int i = 1; i < n; i++)
+        printf("%d + ", i);
+    printf("%d = %d\n", n, sum);
+
+    return 0;
+}
+
+
+
+//연습문제 8
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	int sum = 0;
+	printf("1부터 n까지의 합을 구합니다.\n");
+	scanf("%d", &n);
+	
+	
+
+	sum = (1 + n) * (n / 2);
+	
+
+	printf("1부터 %d까지의 합은 %d입니다.", n, sum);
+}
+
+
+
+//연습문제 9
+#include<stdio.h>
+
+int sumof(int a, int b)
+{
+	int max, min;
+	int sum = 0;
+	if (a > b)
+	{
+		max = a;
+		min = b;
+	}
+	else
+	{
+		max = b;
+		min = a;
+	}
+
+
+	for (int i = min; i <= max; i++)
+	{
+		sum += i;
+	}
+	return sum;
+}
+
+int main(void)
+{
+	int a, b;
+
+	printf("a=");
+	scanf("%d", &a);
+	printf("b=");
+	scanf("%d", &b);
+	printf("총합은 %d 입니다.", sumof(a, b));
+}
