@@ -1,0 +1,343 @@
+//연습문제 10 
+#include<stdio.h>
+int main(void)
+{
+
+	int a, b;
+
+	puts("1부터 n까지의 합을 구합니다.");
+	do {
+		printf("a값: ");
+		scanf("%d", &a);
+		printf("b값: ");
+		scanf("%d", &b);
+		if (a <= b)
+		{
+			printf("a보다 큰 값을 입력하세요!\n");
+			printf("b값: ");
+			scanf("%d", &b);
+		}
+	} while (a >= b);
+
+		printf("b-a는 %d 입니다.", b - a);
+
+	return 0;
+}
+
+
+
+//연습문제 11
+
+#include<stdio.h>
+int main(void)
+{
+	int a;
+	int count= 0;
+
+	printf("양의 정수 입력: ");
+	scanf("%d", &a);
+
+	while(a!=0)
+	{
+		a= a / 10;
+		count++;
+	}
+
+	printf("그 수는 %d자리 입니다", count);
+	
+}
+
+
+연습문제 12
+
+
+#include<stdio.h>
+int main(void)
+{
+
+	printf("  | ");
+	
+	for (int i = 1; i <= 9; i++)
+	{
+		printf("%2d ", i);
+	}
+	printf("\n");
+	printf("--+-----------------------------");
+	printf("\n");
+	
+	
+	for (int a = 1; a <= 9; a++)
+	{
+		printf(" %d| ", a);
+		for (int b = 1; b <= 9; b++)
+		{
+			printf("%3d", a * b);
+		}
+		printf("\n");
+	}
+	
+	return 0;
+
+}
+
+
+연습문제 13
+
+#include<stdio.h>
+int main(void)
+{
+
+	printf("  | ");
+	
+	for (int i = 1; i <= 9; i++)
+	{
+		printf("%2d ", i);
+	}
+	printf("\n");
+	printf("--+-----------------------------");
+	printf("\n");
+	
+	
+	for (int a = 1; a <= 9; a++)
+	{
+		printf(" %d| ", a);
+		for (int b = 1; b <= 9; b++)
+		{
+			printf("%3d", a + b);
+		}
+		printf("\n");
+	}
+	
+	return 0;
+
+}
+
+
+
+연습문제 14
+#include<stdio.h>
+int main(void)
+{
+
+	int n;
+	printf("정사각형을 출력합니다.\n");
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf("%c",'*');
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+
+
+연습문제 15
+
+#include<stdio.h>
+int main(void)
+{
+
+	int n,m;
+	printf("정사각형을 출력합니다.\n");
+	printf("높이: ");
+	scanf("%d", &n); 
+	printf("너비: ");
+	scanf("%d", &m);
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			printf("%c",'*');
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+
+연습문제 16
+
+#include<stdio.h>
+
+void triangleLB(int n)
+{
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j=1; j<=i; j++)
+		{
+			printf("%c", '*');
+		}
+		printf("\n");
+	}
+}
+
+
+int main(void)
+{
+	int n;
+	
+	printf("직각 삼각형을 출력합니다.\n");
+
+	scanf("%d", &n);
+	triangleLB(n);
+
+	
+	return 0;
+}
+
+
+
+
+연습문제 16(2)
+
+
+#include<stdio.h>
+
+void triangleLU(int n)
+{
+	for (int i = 0; i <n; i++)
+	{
+		for (int j=0; j<n-i;j++)
+		{
+			printf("%c", '*');
+		}
+		printf("\n");
+	}
+}
+
+void triangleRU(int n)
+{
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            printf(" ");
+        }
+        for (int k = 0; k < n - i; k++)
+            printf("*");
+        printf("\n");
+    }
+}
+
+
+void triangleRB(int n)
+{
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int k = 1; k < n - i; k++)
+        {
+            printf(" ");
+        }
+        for (int j = 0; j < i + 1; j++)
+            printf("*");
+        printf("\n");
+    }
+}
+
+int main(void)
+{
+	int n;
+	
+	printf("직각 삼각형을 출력합니다.\n");
+
+	scanf("%d", &n);
+	
+    triangleLU(n);
+	triangleRU(n);
+    triangleRB(n);
+
+	return 0;
+}
+
+
+
+
+
+연습문제 17
+
+
+#include<stdio.h>
+
+void spira(int n)
+{
+	for (int i = 1; i <= n; i++)
+	{             
+		for (int j = 1; j <= n - i; j++)
+		{
+			putchar(' ');
+		}
+		for (int j = 1; j <= (i - 1) * 2 + 1; j++)
+		{
+			putchar('*');
+		}
+		putchar('\n');
+	}
+}
+
+int main(void)
+{
+	int n;
+	
+	printf("몇 단: ");
+	scanf("%d", &n);
+	
+	spira(n);
+
+	return 0;
+}
+
+
+연습문제 18
+
+
+#include<stdio.h>
+
+void nrpira(int n)
+{
+	for (int i = 1; i <= n; i++)
+	{             
+		for (int j = 1; j <= i; j++)
+		{
+			putchar(' ');
+		}
+		for (int j = 1; j <= n-(i - 1) * 2 + 3; j++)
+		{
+			printf("%d",i%10);
+		}
+		putchar('\n');
+	}
+}
+
+int main(void)
+{
+	int n;
+	
+	printf("몇 단: ");
+	scanf("%d", &n);
+	
+	nrpira(n);
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
