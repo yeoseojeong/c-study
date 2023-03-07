@@ -1,0 +1,172 @@
+//키의 최댓값을 구하는 문제
+#include<stdio.h>
+#include<stdlib.h>
+
+int maxof(const int a[], int n)
+{
+	int max = a[0];
+
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+		}
+	}
+	return max;
+}
+
+int main(void)
+{
+	int number;
+	printf("사람 수: ");
+	scanf("%d", &number);
+
+	int* height = calloc(number, sizeof(int));
+
+	printf("%d 명의 키를 입력하세요.\n", number);
+
+	for (int i = 0; i < number; i++)
+	{
+		printf("height[%d]: ", i);
+		scanf("%d", &height[i]);
+	}
+
+	printf("최댓값은 %d입니다.\n", maxof(height, number));
+	free(height);
+
+
+	return 0;
+
+}
+
+//키의 최솟값을 구하는 문제
+
+#include<Stdio.h>
+#include<stdlib.h>
+
+int minof(const int a[], int n)
+{
+	int min = a[0];
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+		}
+		
+	}
+  return min;
+}
+
+int main(void)
+{
+	int number;
+	printf("사람 수: ");
+	scanf("%d", &number);
+
+	int* height = calloc(number, sizeof(int));
+
+	printf("%d 명의 키를 입력하세요.\n", number);
+
+	for (int i = 0; i < number; i++)
+	{
+		printf("height[%d]: ", i);
+		scanf("%d", &height[i]);
+	}
+
+	printf("최솟값은 %d입니다.\n", minof(height, number));
+	free(height);
+
+
+	return 0;
+
+}
+
+
+//키의 합계를 구하는 문제
+#include<Stdio.h>
+#include<stdlib.h>
+
+int sumof(const int a[], int n)
+{
+	int result = 0;
+	for (int i = 0; i < n; i++)
+	{
+		result += a[i];
+	}
+
+		return result;
+	
+}
+
+int main(void)
+{
+	int number;
+	printf("사람 수: ");
+	scanf("%d", &number);
+
+	int* height = calloc(number, sizeof(int));
+
+	printf("%d 명의 키를 입력하세요.\n", number);
+
+	for (int i = 0; i < number; i++)
+	{
+		printf("height[%d]: ", i);
+		scanf("%d", &height[i]);
+	}
+
+	printf("합계는 % d입니다.\n", sumof(height, number));
+	free(height);
+
+
+	return 0;
+
+}
+
+//키의 평균을 구하는 문제
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int avgof(const int a[], int n)
+{
+	int result = 0;
+
+	for (int i = 0; i < n; i++)
+	{
+		result += a[i];
+	
+	}
+	return result/n;
+
+}
+
+int main(void)
+{
+	int number;
+	printf("사람 수: ");
+	scanf("%d", &number);
+
+	int* height = calloc(number, sizeof(int));
+
+	printf("%d 명의 키를 입력하세요.\n", number);
+
+	for (int i = 0; i < number; i++)
+	{
+		printf("height[%d]: ", i);
+		scanf("%d", &height[i]);
+	}
+
+	printf("최댓값은 %d입니다.\n", avgof(height, number));
+	free(height);
+
+
+	return 0;
+
+}
+
+
+
+
+
