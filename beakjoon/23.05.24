@@ -1,4 +1,61 @@
+//1934번 최소공배수 
+
+#include <stdio.h>
+
+int N;
+
+int gcd(int a, int b) {
+    if(b == 0)
+        return a;
+    return gcd(b, a % b);
+}
+
+int main() {
+    int x, y;
+    
+    scanf("%d", &N);
+    
+    for(int i = 0; i < N; i++) {
+        scanf("%d %d", &x, &y);
+        printf("%d\n", x * y / gcd(x, y));
+    }
+    
+}
+
+
+//13241번 최소공배수 2
+
+#include <stdio.h>
+
+	long long int gcd(long long int a, long long int b)
+	{
+		if (b == 0)
+		{
+			return a;
+		}
+		return gcd(b, a % b);
+	}
+	
+	int main()
+	{
+	
+	
+	long long int n, m;
+
+	scanf("%lld %lld", &n, &m);
+	
+
+	printf("%lld", n * m/gcd(n, m));
+	
+	
+	
+	return 0;
+
+	}
+	
+
 //1375번: 분수 합
+
 #include<stdio.h>
 int gcd(int a, int b)
 {
