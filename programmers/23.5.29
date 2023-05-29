@@ -1,1 +1,50 @@
 
+//문자열 섞기
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+char* solution(const char* str1, const char* str2) {
+  
+    int i = 0;
+    while (str1[i])
+        i++;
+    int j = 0;
+    while (str2[j])
+        j++;
+    char* answer = (char*)malloc(i + j + 1);
+    int k = 0;
+    while (k < i + j)
+    {
+        if (k % 2 == 0)
+            answer[k] = str1[k / 2];
+        else
+            answer[k] = str2[k / 2];
+        k++;
+    }
+    answer[k] = NULL;
+    return answer;
+}
+
+
+
+//문자열 겹쳐서 출력
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+char* solution( char* my_string, char* overwrite_string, int s) {
+   
+    char* answer = (char*)malloc(10000);
+   
+    for(int j=0;overwrite_string[j]; j++){
+        my_string[s++] = overwrite_string[j];
+    }
+    answer=my_string;
+    return answer;
+}
