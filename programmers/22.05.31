@@ -1,1 +1,90 @@
 
+//더크게합치기
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int plus(int a, b)
+{
+    int temp = b;
+    int i = 0;
+    while (1)
+    {
+        if (temp == 0)
+            break ;
+        temp = temp / 10;
+        i++;
+    }
+    while (i)
+    {
+        a = a * 10;
+        i--;
+    }
+    return (a + b);
+}
+
+int solution(int a, int b) {
+    int answer = 0;
+    int ab;
+    int ba;
+    ab = plus(a, b);
+    ba = plus(b,a);
+    if (ab >= ba)
+        answer = ab;
+    else
+        answer = ba;
+    return (answer);
+}
+
+//두수의 연산값 합치기
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int plus(int a, int b)
+{
+    int result = 0;
+    int temp = b;
+    int i = 0;
+    while (1)
+    {
+        if (temp == 0)
+        {
+            break;
+        }
+        temp = temp / 10;
+        i++;
+    }
+
+    while (i)
+    {
+        a = a * 10;
+        i--;
+    }
+
+    return (a + b);
+}
+
+
+int solution(int a, int b) {
+    int answer = 0;
+
+
+    int ab;
+    int ba;
+    ab = plus(a, b);
+    ba = 2 * a * b;
+
+    if (ab >= ba)
+    {
+        answer = ab;
+    }
+    else
+    {
+        answer = ba;
+    }
+
+    return answer;
+}
