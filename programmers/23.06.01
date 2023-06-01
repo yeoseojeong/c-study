@@ -1,0 +1,33 @@
+//계산기 프로그램(프로그래머스 문제는 아님)
+
+//계산기 프로그램
+
+#include<stdio.h>
+int main()
+{
+	int n, m;
+	char op;
+
+	printf("======계산기 프로그램=====\n");
+	scanf("%d %c %d", &n,&op, &m);
+
+
+	if (op == '+')
+	{
+		printf("%d", n + m);
+	}
+	else if (op == '-')
+	{
+		printf("%d", n - m);
+	}
+	else if (op == '/')
+	{
+		printf("%d", n / m);
+	}
+	else
+	{
+		printf("%d", n * m);
+	}
+
+	return 0;
+}
