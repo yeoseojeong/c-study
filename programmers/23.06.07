@@ -49,7 +49,7 @@ int solution(const char* number) {
     }
     for (int i = 0; i < len; i++)
     {
-        answer += number[i] - '0';
+        answer += number[i] - '0'; //문자를 정수로 바꿔주기 위해 0의 아스키코드 값을 빼줌
     }
     return answer % 9;
 }
