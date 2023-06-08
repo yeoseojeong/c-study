@@ -51,3 +51,31 @@ char* solution(const char* string, int n)
 
     return answer;
 }
+
+
+
+//문자열의 앞의 n글자
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+char* solution(const char* string, int n) {
+
+    int len = 0;
+    while (string[len])
+    {
+        len++;
+    }
+    char* answer = (char*)malloc(n+1);
+
+    answer[n]=NULL;
+    for (int i = 0; i < n; i++)
+    {
+        answer[i] = string[i];
+    }
+
+   
+    return answer;
+}
