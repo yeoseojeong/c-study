@@ -23,3 +23,31 @@ char* solution(const char* string, int index_list[], size_t index_list_len) {
 
     return answer;
 }
+
+//문자열의 뒤의 n글자
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+char* solution(const char* string, int n)
+{
+    int len = 0;
+
+    for (int i = 0; string[i] != NULL; i++)
+    {
+        len++;
+    }
+
+    char* answer = (char*)malloc(n + 1);
+    answer[n] = '\0';
+
+    for (int i = 0; i <n; i++)
+    {
+        answer[i] = string[len - n+i];
+      
+    }
+
+    return answer;
+}
