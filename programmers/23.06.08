@@ -134,3 +134,28 @@ int solution(int arr[], size_t arr_len, int idx) {
 
     return answer;
 }
+
+
+
+//배열만들기 1
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int* solution(int n, int k) {
+
+    int* answer = (int*)malloc(sizeof(int)*n/k);
+    int index = 0;
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (i % k == 0)
+        {
+             answer[index++]= i;
+        }
+    }
+  
+
+    return answer;
+}
