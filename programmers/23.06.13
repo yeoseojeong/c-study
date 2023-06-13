@@ -1,1 +1,178 @@
 
+//하샤드 수
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+bool solution(int x) {
+    bool answer = true;
+    int sum = 0;
+    int n = x;
+
+    while(x)
+    {
+        sum += x%10;
+        x /= 10;
+    }
+
+    if(n%sum == 0)
+        answer = true;
+
+    else
+        answer = false;
+
+    return answer;
+}
+
+//두 정수 사이의 합
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+long long solution(int a, int b) {
+    long long answer = 0;
+    int i;
+   
+   if(a>b)
+   {
+         for(i=b; i<=a;i++)
+        {
+            answer+=i;
+        }
+    
+   }
+ 
+    else if(b>a)
+    {
+        for(i=a; i<=b;i++)
+        {
+            answer+=i;
+        }
+    }
+    else if(a==b)
+    {
+        answer=a;
+    }
+    
+  
+    
+    return answer;
+}
+
+
+//콜라츠 추측
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(long long num) {
+    int answer = 0;
+  
+
+    while(num!=1 && answer!=-1)
+    {
+        if(num%2==0)
+        {
+            answer++;
+            num=num/2;
+            if(answer==500 && num!=1)
+            {
+                answer=-1;
+            }
+        }
+        else 
+        {
+            answer++;
+            num=(num*3)+1;
+            if(answer==500 && num!=1)
+            {
+                answer=-1;
+            }
+        }
+    }
+
+    
+    return answer;
+}
+
+
+
+//핸드폰 번호 가리기
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+char* solution(const char* phone_number) {
+
+    char* answer = (char*)malloc(20);
+
+   
+    int i;
+    answer=phone_number;
+    while (answer[i])
+    {
+        i++;
+    }
+
+    for (int j = 0; j < i - 4; j++)
+    {
+        answer[j] = '*';
+    }
+    return answer;
+}
+
+
+
+//음양 더하기
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int absolutes[], size_t absolutes_len, bool signs[], size_t signs_len) {
+    int answer = 0;
+    
+    for(int i=0;i<absolutes_len;i++)
+    {
+        if(signs[i]==true)
+        {
+            absolutes[i]= absolutes[i];
+        }
+        else
+        {
+             absolutes[i]= -absolutes[i];
+        }
+    }
+    for(int i=0;i<absolutes_len;i++)
+    {
+        answer+=absolutes[i];
+    }
+    
+    
+    return answer;
+}
+
+
+//없는 숫자 더하기
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int numbers[], size_t numbers_len) {
+    int answer = 0;
+    
+  int result[20];
+    for(int i=0; i<numbers_len;i++)
+    {
+        answer+=numbers[i];
+    }
+    
+    return 45-answer;
+}
