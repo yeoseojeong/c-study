@@ -1,0 +1,75 @@
+//문자열 다루기 기본
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+bool solution(const char* s) {
+    bool answer = true;
+
+    int i;
+    int cnt;
+
+    while (s[cnt])
+    {
+        cnt++;
+    }
+
+    if (cnt == 4 || cnt == 6)
+    {
+        for (i = 0; i < cnt; i++)
+        {
+            if (s[i] < '0' || s[i]>'9')
+            {
+                answer = false;
+            }
+
+        }
+
+    }
+    else
+    {
+        answer = false;
+    }
+
+
+    return answer;
+}
+
+
+
+
+//가운데 글자 가져오기
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+char* solution(const char* s) {
+
+    char* answer = (char*)malloc(sizeof(char)*2);
+    
+    int len=0;
+    
+    while(s[len])
+    {
+        len++;
+    }
+    
+  
+        if(len%2==0)
+        {
+            answer[0]=s[len/2-1];
+            answer[1]=s[len/2];
+            answer[2]=NULL;
+        }
+        else
+        {
+            answer[0]=s[len/2];
+            answer[1]=NULL;
+        }
+    return answer;
+}
+
