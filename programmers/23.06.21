@@ -18,3 +18,36 @@ int solution(int n) {
 
     return answer;
 }
+
+
+
+//N개의 최소공배수
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int arr[], size_t arr_len) 
+{
+    long answer = 1;
+    int sw = 0;
+    while(sw != 1)
+    {
+        for(int j=0; j<arr_len; j++)
+        {
+            if(answer % arr[j] != 0) 
+            {
+                sw = 1;
+            }
+        }
+        if(sw == 0)
+        {
+            break;
+        }
+        else{
+            answer++;
+        }
+        sw = 0;
+    }
+    return answer;
+}
