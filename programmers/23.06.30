@@ -1,0 +1,46 @@
+//올바른 괄
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+
+bool solution(const char* s) {
+   
+    
+    int cnt=0;
+    
+    for(int i=0; s[i]!=NULL;i++)
+    {
+       
+        if(s[i]=='(')
+        {
+         cnt++;   
+        }
+        else
+        {
+            if(cnt==0)
+            {
+                return false;
+                
+            }
+            else
+            {
+                cnt--;
+            }
+            
+        }
+        
+    }
+    
+    if(cnt==0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
+}
