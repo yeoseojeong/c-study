@@ -1,0 +1,37 @@
+//약수
+
+#include<stdio.h>
+int main()
+{
+	int n, temp, max = 2;
+	int min = 100000;
+	scanf("%d", &n);
+
+	while (n--)
+	{
+		scanf("%d", &temp);
+
+		if (max < temp)
+		{
+			max = temp;
+		}
+		else
+		{
+			max = max;
+		}
+		if (min > temp)
+		{
+			min = temp;
+		}
+		else
+		{
+			min = min;
+		}
+
+
+	}
+	printf("%d", max * min);
+	return 0;
+
+
+}
