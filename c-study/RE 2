@@ -1,0 +1,68 @@
+/*2. unsigned int 형태의 변수 a, b 두개가 있고, 각각 임의의 값을 초기값으로 준다.
+이 두 변수의 값을 2진수로 생각했을때, 같은 자리에 같은 비트 값이 들어있는 갯수가 
+몇개인지 카운트 해서 출력하는 main 코드를 작성 (main  에서 다함)*/
+
+#include<stdio.h>
+int main()
+{
+	unsigned int a = 10;
+	unsigned int b = 20;
+
+	int position_a = 0;
+	int position_b = 0;
+
+	int str_a[50] = { 0 };
+	int str_b[50] = { 0 };
+
+	int cnt=0;
+
+	while (1)
+	{
+		
+		str_a[position_a] = a % 2;
+		a = a / 2;
+		position_a++;
+
+		if (a == 0)
+		{
+			break;
+		}
+	}
+	while (1)
+	{
+		
+		str_b[position_b] = b % 2;
+		b = b / 2;
+		position_b++;
+
+		if (b == 0)
+		{
+			break;
+		}
+	}
+
+	if (position_a > position_b)
+	{
+		for (int i = position_a - 1; i >= 0; i--)
+		{
+			if (str_a[i]== str_b[i])
+			{
+				cnt++;
+			}
+		}
+	}
+	else
+	{
+		for (int i = position_b - 1; i >= 0; i--)
+		{
+			if (str_a[i] == str_b[i])
+			{
+				cnt++;
+			}
+		}
+	}
+
+	printf("%d", cnt);
+}
+
+
