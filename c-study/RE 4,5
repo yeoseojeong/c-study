@@ -36,3 +36,40 @@ int main()
 
 	printf("%d", max - min);
 }
+
+
+
+
+
+
+//5. 4번 문제를 포인터를 사용하여 해결
+
+#include<stdio.h>
+int main()
+{
+	unsigned char c[3][10] = { 1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,47,49,51,53,55,57,59,61 };
+	unsigned char* p = &c[0][0];
+	int max = 0;
+	int min = 1000;
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (*p > max)
+			{
+				max = *p;
+			
+			}
+			if (*p < min)
+			{
+				min = *p;
+
+			}
+			*p++;
+		}
+		
+	}
+
+	printf("%d", max - min);
+}
