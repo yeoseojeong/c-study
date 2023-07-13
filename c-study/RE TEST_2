@@ -91,3 +91,27 @@ int main() {
 
     return 0;
 }
+
+
+//<int형 변수 n을 받고 0부터 n까지 공백을 둔 뒤 출력. 단, n이 음수면 negative 출력>
+
+
+#include<stdio.h>
+int main()
+{
+int n;
+
+scanf("%d", &n);
+
+if (n < 0)
+{
+	printf("negative");
+	return 0;
+}
+for (int i = 0; i <= n; i++)
+{
+
+	printf("%d ", i);
+}
+}
+
