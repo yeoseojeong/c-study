@@ -1,0 +1,32 @@
+//비밀 전화번호
+
+#include<stdio.h>
+int main()
+{
+
+	char str[20];
+	char data[20];
+
+	gets_s(str);
+	gets_s(data);
+	
+
+	for (int i = 0; data[i] != NULL; i++)
+	{
+		for (int j = 0; str[j] != NULL; j++)
+		{
+			if (data[i] == str[j])
+			{
+				printf("%d", j);
+				break;
+			}
+			else if(data[i]==' ')
+			{
+				printf(" ");
+				break;
+			}
+		}
+	}
+	return 0;
+
+}
