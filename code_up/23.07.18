@@ -57,7 +57,7 @@ int main()
 }
 
 
-//이차원 배열 배우기 -2 1461
+//이차원 배열 배우기  1461
 
 #include <stdio.h>
 int main()
@@ -89,7 +89,7 @@ int main()
 	
 }
 
-//이차원 배열 배우기-2 1462
+//이차원 배열 배우기 1462
 
 #include <stdio.h>
 int main()
@@ -121,7 +121,7 @@ int main()
 	
 }
 
-//이차원 배열 배우가-3 1463
+//이차원 배열 배우가 1463
 
 #include <stdio.h>
 int main()
