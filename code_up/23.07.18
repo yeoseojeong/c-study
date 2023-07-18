@@ -88,3 +88,68 @@ int main()
 
 	
 }
+
+//이차원 배열 배우기-2 1462
+
+#include <stdio.h>
+int main()
+{
+	int n,m=1;
+	int arr[101][101] = {  };
+	scanf("%d", &n);
+	for (int i = 1; i <= n; i++)
+	{
+		
+		for (int j =1; j <= n; j++)
+		{
+			arr[j][i] = m;
+			m++;
+		
+		}
+		
+	}
+
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= n; j++)
+		{
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	
+}
+
+//이차원 배열 배우가-3 1463
+
+#include <stdio.h>
+int main()
+{
+	int n,m=1;
+	int arr[101][101] = {  };
+	scanf("%d", &n);
+	for (int i = 1; i <= n; i++)
+	{
+		
+		for (int j =n; j >= 1; j--)
+		{
+			arr[j][i] = m;
+			m++;
+		
+		}
+		
+	}
+
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= n; j++)
+		{
+
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	
+}
