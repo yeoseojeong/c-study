@@ -1,0 +1,67 @@
+//10진수 들어오는 것을 2진수로 바꾸고 2진수 하위 4비트로 MBTI검사하기 
+
+#include<stdio.h>
+
+void printMBTI(unsigned char data)
+{
+	unsigned char bin[30];
+	int index=0;
+
+	while (1)
+	{
+		bin[index] = data % 2;
+		data = data / 2;
+		index++;
+		if (data == 0)
+		{
+			break;
+		}
+	}
+
+	if (bin[3] == 0)
+	{
+		printf("E");
+	}
+	else if(bin[3]==1)
+	{
+		printf("I");
+	}
+	if (bin[2] == 0)
+	{
+		printf("S");
+	}
+	else if (bin[2] == 1)
+	{
+		printf("N");
+	}
+	if (bin[1] == 0)
+	{
+		printf("T");
+	}
+	else if (bin[1] == 1)
+	{
+		printf("F");
+	}
+	if (bin[0] == 0)
+	{
+		printf("J");
+	}
+	else if (bin[0] == 1)
+	{
+		printf("P");
+	}
+	
+
+}
+int main()
+{
+	int input;
+	unsigned char data;
+
+	scanf("%d", &input);
+	data = (unsigned char)input;
+
+	printMBTI(data);
+
+	return 0;
+}
