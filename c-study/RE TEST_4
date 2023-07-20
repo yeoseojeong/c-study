@@ -1,0 +1,46 @@
+#include<stdio.h>
+
+void drawBox(unsigned char data[])
+{
+ 
+    unsigned char result;
+
+      for (int i = 0; i < 4; i++)
+       {
+           for (int j = 7; j >= 0; j--)
+           {
+               result = (data[i] >> j) & 0X01;
+
+                   if (result == 1)
+                   {
+                       printf("*");
+                   }
+                   else
+                   {
+                       printf(" ");
+                   }
+           }
+           printf("\n");
+       }
+
+     
+}
+
+int main()
+{
+    unsigned char data[4] = { 0XFF,0X12,0X34,0X01 };
+    int input = 0;
+
+    for (int i = 0; i < 4; i++)
+    {
+        scanf("%X", &input);
+        data[i] = (char)input;
+    }
+    drawBox(data);
+
+    return 0;
+
+}
+
+
+
