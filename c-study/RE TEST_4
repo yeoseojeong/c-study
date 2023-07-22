@@ -44,3 +44,34 @@ int main()
 
 
 
+//5
+
+#include<stdio.h>
+
+
+void printModifiedData(unsigned int a, int n)
+{
+
+    for (int i = (n * 8) - 1; i >= 0; i--)
+    {
+        a = a& ~(1<<i);
+    }
+
+
+    printf("0X%08X",a);
+
+
+}
+
+
+int main()
+{
+    unsigned int a = 0X12345678;
+    int n;
+
+    scanf("%X", &a);
+    scanf("%d", &n);
+    printModifiedData(a, n);
+
+    return 0;
+}
