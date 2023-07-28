@@ -1,0 +1,40 @@
+//1558 함수 뒤집어 리턴
+
+
+#include <stdio.h>
+
+long long int n;
+long long int f(long long int x)
+{
+
+    int cnt = 0;
+    int result[100];
+    while (1)
+    {
+        result[cnt] = x % 10;
+        x = x / 10;
+        cnt++;
+        if (x == 0)
+        {
+            break;
+        }
+    }
+    long long int temp=0;
+  
+    for (int i = 0; i < cnt; i++)
+    {
+        long long int mul = 1;
+        for (int j = 0; j < cnt - i - 1; j++)
+        {
+            mul *= 10;
+        }
+        temp += result[i] * mul;
+    }
+    return temp;
+}
+// 이 부분에 들어가야 될 코드를 작성하여 제출
+int main()
+{
+  scanf("%lld", &n);
+    printf("%lld\n", f(n));
+}
