@@ -1,0 +1,21 @@
+//1977
+
+#include <stdio.h>
+
+int main() {
+	int n, m, i, sum = 0, min = 99999;
+	scanf("%d %d", &n, &m);
+
+	for (i = 1; i <= 100; i++) {
+		
+		if (n <= i * i && i * i <= m) {
+			sum += i * i;
+			if (min > i * i)
+				min = i * i;
+		}
+	}
+	if (sum == 0) printf("-1");
+	else printf("%d\n%d", sum, min);
+}
+
+
