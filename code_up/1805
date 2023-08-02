@@ -1,0 +1,47 @@
+//1805
+
+#include<stdio.h>
+
+struct car {
+	int num, gas;
+};
+
+int main(void)
+{
+	struct car str[101];
+	int n;
+
+
+	scanf("%d", &n);
+
+	for (int i = 1; i <= n; i++)
+	{
+		scanf("%d %d", &str[i].num, &str[i].gas);
+	}
+
+	for (int i = 1; i <= n - 1; i++)
+	{
+		for (int j = i + 1; j <= n; j++)
+		{
+			if (str[i].num > str[j].num)
+			{
+				int tnum = str[i].num;
+				int tgas = str[i].gas;
+				str[i].num = str[j].num;
+				str[i].gas = str[j].gas;
+				str[j].num = tnum;
+				str[j].gas = tgas;
+			}
+		}
+
+	}
+	for (int i = 1; i <= n; i++)
+	{
+		printf("%d %d\n", str[i].num, str[i].gas);
+	}
+	return 0;
+
+}
+
+
+
