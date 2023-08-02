@@ -1,0 +1,32 @@
+//1451
+
+#include<stdio.h>
+int main(void)
+{
+	int n;
+	int result[10001];
+
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &result[i]);
+	}
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (result[i] > result[j])
+			{
+				int temp = result[i];
+				result[i] = result[j];
+				result[j] = temp;
+			}
+		}
+	}
+	for (int i = n-1; i >=0; i--)
+	{
+		printf("%d\n", result[i]);
+	}
+	return 0;
+}
