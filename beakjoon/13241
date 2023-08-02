@@ -1,1 +1,29 @@
+//13241번 최소공배수 2
 
+#include <stdio.h>
+
+	long long int gcd(long long int a, long long int b)
+	{
+		if (b == 0)
+		{
+			return a;
+		}
+		return gcd(b, a % b);
+	}
+	
+	int main()
+	{
+	
+	
+	long long int n, m;
+
+	scanf("%lld %lld", &n, &m);
+	
+
+	printf("%lld", n * m/gcd(n, m));
+	
+	
+	
+	return 0;
+
+	}
