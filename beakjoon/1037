@@ -1,4 +1,4 @@
-//약수
+//약수 1037
 
 #include<stdio.h>
 int main()
