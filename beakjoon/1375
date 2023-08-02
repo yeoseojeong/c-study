@@ -1,0 +1,36 @@
+//1375번: 분수 합
+
+#include<stdio.h>
+int gcd(int a, int b)
+{
+	if (b == 0)
+	{
+		return a;
+	}
+	else
+	{
+		gcd(b, a % b);
+	}
+}
+
+int main()
+{
+	int a, b, c, d;
+	int top = 0;
+	int bottom = 0;
+	int max=0;
+
+
+	scanf("%d %d", &a, &b);
+	scanf("%d %d", &c, &d);
+
+	bottom = b * d;
+	top = (a * d) + (b * c);
+
+	max = gcd(top, bottom);
+	top = top / max;
+	bottom = bottom / max;
+
+
+	printf("%d %d", top, bottom);
+}
