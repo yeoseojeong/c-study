@@ -1,0 +1,45 @@
+//1026
+
+#include <stdio.h>
+
+int main() {
+
+	int n, i, j, temp, result = 0;
+	int A[50];
+	int B[50];
+
+	scanf("%d", &n);
+
+	for (i = 0; i < n; i++)
+		scanf("%d", &A[i]);
+	for (i = 0; i < n; i++)
+		scanf("%d", &B[i]);
+
+
+	for (i = 0; i < n ; i++) {
+		for (j = 0; j < n - 1; j++) {
+			if (A[j] < A[j + 1]) {
+				temp = A[j];
+				A[j] = A[j + 1];
+				A[j + 1] = temp;
+			}
+		}
+	}
+
+	for (i = 0; i < n ; i++) {
+		for (j = 0; j < n - 1; j++) {
+			if (B[j] > B[j + 1]) {
+				temp = B[j];
+				B[j] = B[j + 1];
+				B[j + 1] = temp;
+			}
+		}
+	}
+
+	for (i = 0; i < n; i++) {
+		result += A[i] * B[i];
+	}
+
+	printf("%d", result);
+
+}
