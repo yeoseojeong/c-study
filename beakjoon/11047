@@ -1,0 +1,30 @@
+//11047
+
+#include<stdio.h>
+int main()
+{
+	int n,m;
+	int arr[11];
+	int cnt = 0;
+	scanf("%d %d", &n,&m);
+
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	int i = n - 1;
+
+	while (m > 0)
+	{
+		if (arr[i] > m)
+		{
+			i--;
+		}
+		else
+		{
+			m = m - arr[i];
+			cnt++;
+		}
+	}
+	printf("%d", cnt);
+}
