@@ -1,45 +1,32 @@
 //10814
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
 typedef struct {
 	int age;
 	char name[101];
-}Member;
+}w;
+
+w member[100001];
+
 int main()
 {
-	int n, min, max;
-	
-	scanf("%d", &n);
+	int num;
+	scanf("%d", &num);
 
-	Member m[n];
-	for (int i = 0; i < n; i++)
+	for (int a = 0; a < num; a++)
 	{
-		scanf("%d %s", &m[i].age, m[i].name);
-		if (!i)
-		{
-			max = min = m[i].age;
-		}
-		else if (min > m[i].age)
-		{
-			min = m[i].age;
-		}
-		else if (max < m[i].age)
-		{
-			max = m[i].age;
-		}
+		scanf("%d %s", &member[a].age, member[a].name);
 	}
-	for (int i = min; i <= max; i++)
+	for (int a = 1; a <= 200; a++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int b = 0; b < num; b++)
 		{
-			if (m[j].age == i)
+			if (a == member[b].age)
 			{
-				printf("%d %s\n", m[j].age, m[j].name);
+				printf("%d %s\n", member[b].age, member[b].name);
 			}
 		}
 	}
-
-	return 0;
-
 }
