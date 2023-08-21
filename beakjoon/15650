@@ -6,7 +6,7 @@ int n, m;
 int result[1000];
 int check[1000];
 
-void DFS(int depth)
+void DFS(int depth, int cut)
 {
     int i;
 
@@ -20,11 +20,11 @@ void DFS(int depth)
     {
         for (i = 1; i <= n; i++)
         {
-            if (check[i] == 0)
+            if (check[i] == 0 && cut < i)
             {
                 result[depth] = i;
                 check[i] = 1;
-                DFS(depth + 1);
+                DFS(depth + 1, i);
                 check[i] = 0;
             }
         }
@@ -34,6 +34,6 @@ void DFS(int depth)
 int main(void)
 {
     scanf("%d %d", &n, &m);
-    DFS(0);
+    DFS(0, 0);
     return 0;
 }
