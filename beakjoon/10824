@@ -1,0 +1,30 @@
+//10824
+
+#include <stdio.h>
+
+int main()
+{
+    long long int a, b, c, d;
+    int temp1, temp2;
+
+    scanf("%lld %lld %lld %lld", &a, &b, &c, &d);
+
+    temp1 = b;
+    temp2 = d;
+
+    while (temp1 != 0)
+    {
+        temp1 /= 10;
+        a *= 10;
+    }
+
+    while (temp2 != 0)
+    {
+        temp2 /= 10;
+        c *= 10;
+    }
+
+    printf("%lld", a + b + c + d);
+
+    return 0;
+}
