@@ -1,0 +1,37 @@
+//2577
+
+#include<stdio.h>
+
+int main()
+{
+	int a, b, c;
+
+
+	int total;
+	int result[1001] = { 0 };
+	int sum;
+	
+	scanf("%d %d %d", &a, &b, &c);
+
+	total = a * b * c;
+	sum = total;
+
+	while(1)
+	{
+		
+		sum=total % 10;
+		result[sum]++;
+		total = total / 10;
+		
+		if (total == 0)
+		{
+			break;
+		}
+	}
+
+	for (int j = 0; j <= 9; j++)
+	{
+		printf("%d\n", result[j]);
+	}
+	return 0;
+}
