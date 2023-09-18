@@ -1,0 +1,14 @@
+//가장 하위비트 0으로 바꿔 출력
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+ 
+int main() {
+    unsigned int n;
+    scanf("%u", &n);
+ 
+    unsigned int result = n & ~1;
+ 
+    printf("%u\n", result);
+ 
+    return 0;
+}
