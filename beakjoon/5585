@@ -1,0 +1,51 @@
+//5585
+
+#include<stdio.h>
+int main()
+{
+	int money;
+	scanf("%d", &money);
+	int cnt = 0;
+	int m= 1000 - money;
+	
+	while (1)
+	{
+		
+		if (m >= 500)
+		{
+			m = m - 500;
+			cnt++;
+		}
+		else if ( m>= 100)
+		{
+			m = m - 100;
+			cnt++;
+		}
+		else if (m >= 50)
+		{
+			m = m - 50;
+			cnt++;
+		}
+		else if (m >= 10)
+		{
+			m = m - 10;
+			cnt++;
+		}
+		else if (m >= 5)
+		{
+			m = m - 5;
+			cnt++;
+		}
+		else if (m >= 1)
+		{
+			m = m - 1;
+			cnt++;
+		}
+		if (m == 0)
+		{
+			break;
+		}
+	}
+	printf("%d", cnt);
+	return 0;
+}
