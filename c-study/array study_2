@@ -1,0 +1,183 @@
+
+//배열로 최댓값 찾기
+#include<stdio.h>
+int main()
+{
+	int arr[11];
+	int n;
+	int max=0;
+
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+	}
+
+	printf("%d", max);
+	return 0;
+}
+
+//특정값 인덱스 찾기
+#include<stdio.h>
+int main()
+{
+	int arr[11];
+	int n;
+	int target;
+	int index;
+	scanf("%d", &n);
+	
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+
+	}
+
+	scanf("%d", &target);
+
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] == target)
+		{
+			index = i;
+		}
+	}
+	printf("%d", index);
+	return 0;
+}
+
+//배열 요소의 평균값 구하기
+
+#include<stdio.h>
+int main()
+{
+	int arr[11];
+	int n;
+	int result=0;
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	for (int i = 0; i < n; i++)
+	{
+		result += arr[i];
+	}
+
+	result=result / n;
+
+	printf("%d", result);
+
+	return 0;
+
+}
+
+
+//홀수짝수 갯수세기
+#include<stdio.h>
+int main()
+{
+	int arr[11];
+	int n;
+	int odd = 0;
+	int even = 0;
+
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] % 2 == 0)
+		{
+			odd++;
+		}
+		else
+		{
+			even++;
+		}
+	}
+
+	printf("odd: %d\n", odd);
+	printf("even: %d", even);
+	return 0;
+
+}
+
+
+
+//배열로 최댓값, 최솟값 찾기
+#include<stdio.h>
+int main()
+{
+	int arr[11];
+	int n;
+	int max=0;
+	int min = 1000000;
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+		if (min > arr[i])
+		{
+			min = arr[i];
+		}
+	}
+
+	printf("max: %d\n min: %d", max,min);
+	return 0;
+}
+
+//배열에서 특정 값보다 큰 요소 개수 세기
+#include<stdio.h>
+int main()
+{
+	int arr[111];
+	int n;
+	int cnt = 0;
+
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	int target;
+
+	scanf("%d", &target);
+
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] > target)
+		{
+			cnt++;
+		}
+	}
+
+	printf("%d", cnt);
+
+	return 0;
+
+}
+
