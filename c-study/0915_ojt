@@ -1,0 +1,237 @@
+//A
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+ 
+int main() {
+    unsigned int n;
+    scanf("%u", &n);
+ 
+    unsigned int result = n & ~1;
+ 
+    printf("%u\n", result);
+ 
+    return 0;
+}
+
+
+//B
+
+#include<stdio.h>
+int main()
+{
+	unsigned char data;
+	unsigned char n;
+
+	unsigned char result;
+	unsigned char result_2;
+	unsigned char result_3;
+
+	scanf("%hhu %hhu", &data, &n);
+
+	result = (data & 0x0F) >> n;
+	result_2 = (data & 0xF0) << n;
+
+
+	result_3 = result | result_2;
+
+	printf("%hhu", result_3);
+
+	return 0;
+
+}
+
+//C
+
+#include <stdio.h>
+ 
+int main() {
+    unsigned int n;
+    unsigned int result = 0;
+ 
+        scanf("%u", &n);
+    
+ 
+    result |= (n & 0xFF) << 24;
+    result |= ((n >> 8) & 0xFF) << 16;
+    result |= ((n >> 16) & 0xFF) << 8;
+    result |= ((n >> 24) & 0xFF);
+ 
+    
+   
+        printf("%u\n", result);
+   
+ 
+    return 0;
+}
+
+//D
+
+#include<stdio.h>
+int main()
+{
+    unsigned char data;
+    unsigned char n;
+    unsigned char result;
+ 
+    scanf("%hhu", &data);
+    scanf("%hhu", &n);
+    result = (data >> n) & 1;
+ 
+    printf("%hhu", result);
+    return 0;
+}
+
+
+//E
+#include <stdio.h>
+ 
+int main() {
+    unsigned char n;
+    scanf("%hhu", &n);
+ 
+    for (int i = 0; i < n; i++) {
+        unsigned char value;
+        scanf("%hhu", &value);
+ 
+        for (int j = 7; j >= 0; j--) {
+            if (value & (1u << j)) {
+                printf("-");
+            }
+            else {
+                printf("_");
+            }
+        }
+    }
+ 
+    printf("\n");
+ 
+    return 0;
+}
+
+
+//F
+
+#include <stdio.h>
+ 
+int main() {
+    unsigned int num;
+ 
+    scanf("%u", &num);
+ 
+    char str[5];
+ 
+  
+    for (int i = 0; i < 4; i++) 
+    {
+        str[i] = ((num >> (i * 8)) & 0xFF); 
+    }
+    str[4] = NULL; 
+ 
+    for (int i = 3; i >= 0; i--)
+    {
+        printf("%c", str[i]);
+    }
+    return 0;
+}
+
+
+//G
+
+#include <stdio.h>
+ 
+int main() {
+    unsigned int num;
+ 
+    scanf("%u", &num);
+ 
+    char str[5];
+ 
+  
+    for (int i = 0; i < 4; i++) 
+    {
+        str[i] = ((num >> (i * 8)) & 0xFF); 
+    }
+    str[4] = NULL; 
+ 
+    for (int i = 0; i <4; i++)
+    {
+        printf("%c", str[i]);
+    }
+    return 0;
+}
+
+//H
+
+#include <stdio.h>
+ 
+int main() {
+    int n, x;
+  
+    scanf("%d %d", &n, &x);
+ 
+    if (x < 2 || x >= 10) 
+    {
+       
+        return 1; 
+    }
+ 
+    if (n == 0)
+    {
+        printf("0\n");
+        return 0; 
+    }
+ 
+    char result[32];  
+    int index = 0;
+ 
+    while (n > 0) 
+    {
+        int mod =  n% x;
+        result[index++] = '0' + mod;  
+        n /= x;
+    }
+ 
+   
+    for (int i = index - 1; i >= 0; i--) 
+    {
+        printf("%c", result[i]);
+    }
+ 
+    printf("\n");
+ 
+    return 0; 
+}
+
+//I
+
+#include <stdio.h>
+ 
+int main() {
+    int n;
+    scanf("%d", &n);
+    getchar(); 
+ 
+    while (n--)
+    {
+        char input[9]; 
+        scanf("%8s", input);
+ 
+        unsigned char result = 0;
+ 
+        for (int i = 0; i < 8; i++) 
+        {
+            if (input[i] == '-')
+            {
+                result |= (1 << (7 - i));
+            }
+        }
+ 
+        printf("%d ", result);
+    }
+ 
+    printf("\n");
+ 
+    return 0;
+}
+
