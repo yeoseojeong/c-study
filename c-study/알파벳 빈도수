@@ -1,0 +1,33 @@
+//소문자로 문장을 읽고 a~z까지의 빈도수출력 구현해보기
+
+#include <stdio.h>
+
+int main() {
+    char str[101];
+    int result[26] = { 0 };  
+
+    gets_s(str);
+
+    
+    int len = 0;
+    while (str[len] != NULL) {
+        len++;
+    }
+
+    for (int i = 0; i < len; i++) 
+    {
+        
+        if (str[i] >= 'a' && str[i] <= 'z')
+        {
+            result[str[i] - 'a']++;
+        }
+    }
+
+    for (int i = 0; i < 26; i++) {
+     
+            printf("%c: %d\n", 'a' + i, result[i]);
+        
+    }
+
+    return 0;
+}
