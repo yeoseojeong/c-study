@@ -1,0 +1,406 @@
+//진법 변환기
+
+#include <stdio.h>
+ 
+int main() {
+    int n, x;
+  
+    scanf("%d %d", &n, &x);
+ 
+    if (x < 2 || x >= 10) 
+    {
+       
+        return 1; 
+    }
+ 
+    if (n == 0)
+    {
+        printf("0\n");
+        return 0; 
+    }
+ 
+    char result[32];  
+    int index = 0;
+ 
+    while (n > 0) 
+    {
+        int mod =  n% x;
+        result[index++] = '0' + mod;  
+        n /= x;
+    }
+ 
+   
+    for (int i = index - 1; i >= 0; i--) 
+    {
+        printf("%c", result[i]);
+    }
+ 
+    printf("\n");
+ 
+    return 0; 
+}
+
+//짝수자릿수
+
+#include<stdio.h>
+int main()
+{
+	unsigned int n;
+	unsigned int arr[50];
+	int cnt=1;
+
+	scanf("%d", &n);
+	while (1)
+	{
+		arr[cnt] = n % 10;
+		n = n / 10;
+	
+		if (n == 0)
+		{
+			break;
+		}
+		cnt++;	
+	}
+	for (int i = cnt; i >=1 ; i--)
+	{
+		if (i % 2 == 0)
+		{
+			printf("%d", arr[i]);
+		}
+	}
+	return 0;
+}
+
+//총합이 포함된 배열
+
+
+#include<stdio.h>
+int main()
+{
+	int str[11];
+	int sum = 0;
+	int result;
+
+	for (int i = 0; i < 10; i++)
+	{
+		scanf("%d", &str[i]);
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		sum += str[i];
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (sum == str[i])
+		{
+			result = 1;
+			break;
+		}
+		else 
+		{
+			result = 0;
+		}
+	}
+
+	printf("%d", result);
+	return 0;
+}
+
+//최대값 찾기
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+
+int main()
+{
+    int str[11];
+    int max = -100000;
+    int index;
+
+    for (int i = 0; i < 10; i++)
+    {
+        scanf("%d", &str[i]);
+    }
+
+    for(int i=0;i<10;i++)
+    {
+        if (str[i] > max)
+        {
+            max = str[i];
+        }
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (str[i] == max)
+        {
+            index = i;
+        }
+    }
+    printf("%d %d\n", max, index);
+
+    return 0;
+
+}
+//큰수중에 가장 가까운 배수
+
+#include<stdio.h>
+int main()
+{
+    int n, m;
+    int cut = 0;
+    scanf("%d %d", &n, &m);
+     
+ 
+    for (int i = n+1; i>=m ; i++)
+    {
+        if (i % m == 0)
+        {
+            cut = i;
+            break;
+        }
+    }
+    for (int i = 1; i <= cut; i++)
+    {
+        printf("%d ", i);
+    }
+    return 0;
+}
+
+
+//특정비트의 값
+
+#include<stdio.h>
+int main()
+{
+    unsigned int n;
+    unsigned int result[101];
+    unsigned int result_2[101];
+    int len = 0;
+    int cnt = 0;
+    int index;
+ 
+    scanf("%d %d", &n,&index);
+ 
+ 
+    while (1)
+    {
+        result[cnt] = n % 2;
+        n = n / 2;
+        cnt++;
+         
+        if (n == 0)
+        {
+            break;
+        }
+    }
+         
+            printf("%d", result[index]);
+            return 0;
+}
+
+//파형 그리기
+
+#include <stdio.h>
+ 
+int main() {
+    int n;
+    scanf("%d", &n);
+ 
+    for (int i = 0; i < n; i++) {
+        int value;
+        scanf("%d", &value);
+ 
+        for (int j = 7; j >= 0; j--) 
+{
+            if (value & (1 << j)) 
+{
+                printf("-");
+            }
+            else {
+                printf("_");
+            }
+        }
+    }
+ 
+    printf("\n");
+ 
+    return 0;
+}
+
+//파형 읽어내기
+
+#include <stdio.h>
+ 
+int main() {
+    int n;
+    scanf("%d", &n);
+    getchar(); 
+ 
+    while (n--)
+    {
+        char input[9]; 
+        scanf("%8s", input);
+ 
+        unsigned char result = 0;
+ 
+        for (int i = 0; i < 8; i++) 
+        {
+            if (input[i] == '-')
+            {
+                result |= (1 << (7 - i));
+            }
+        }
+ 
+        printf("%d ", result);
+    }
+ 
+    printf("\n");
+ 
+    return 0;
+}
+
+//팰린드롬수
+
+#include<stdio.h>
+int main()
+{
+	unsigned int n;
+	unsigned int str_1[101];
+	unsigned int str_2[101];
+	scanf("%d", &n);
+	int cnt=0;
+	int index = 0;
+	int result = 0;
+	int sum = 0,sum_2=0;
+	
+	while (1)
+	{
+		str_1[cnt] = n % 10;
+		n = n / 10;
+		if (n == 0)
+			break;
+		cnt++;
+	}
+	for(int i=cnt;i>=0;i--)
+	{
+		str_2[index] = str_1[i];
+		index++;   
+	}
+
+	for (int i = 0; i < cnt; i++)
+	{
+		if (str_1[i] == str_2[i])
+		{
+			result++;
+		}
+	}
+	
+
+	for (int i = 0; i <=cnt; i++) {
+		sum = sum * 10 + str_1[i];
+
+	}
+	for (int i = 0; i <= cnt; i++) {
+		sum_2 = sum_2 * 10 + str_2[i];
+
+	}
+
+	if (result == cnt)
+	{
+		printf("palindrome");
+	}
+	else 
+	{
+		printf("%d%d", sum_2,sum);
+		
+	}
+	return 0;
+}
+
+//팰린드롬수_2
+#include<stdio.h>
+int main()
+{
+	unsigned int n;
+	unsigned int str_1[101];
+	unsigned int str_2[101];
+	scanf("%d", &n);
+	int cnt=0;
+	int index = 0;
+	int result = 0;
+	int sum = 0,sum_2=0;
+	
+	while (1)
+	{
+		str_1[cnt] = n % 10;
+		n = n / 10;
+		if (n == 0)
+			break;
+		cnt++;
+	}
+	for(int i=cnt;i>=0;i--)
+	{
+		str_2[index] = str_1[i];
+		index++;   
+	}
+
+	for (int i = 0; i < cnt; i++)
+	{
+		if (str_1[i] == str_2[i])
+		{
+			result++;
+		}
+	}
+	
+
+	for (int i = 0; i <=cnt; i++) {
+		sum = sum * 10 + str_1[i];
+
+	}
+
+	if (result == cnt)
+	{
+		printf("palindrome");
+	}
+	else 
+	{
+		printf("%d", sum);
+		
+	}
+	return 0;
+}
+
+//홀수자릿수
+#include<stdio.h>
+int main()
+{
+	unsigned int n;
+	unsigned int arr[50];
+	int cnt=1;
+
+	scanf("%d", &n);
+	while (1)
+	{
+		arr[cnt] = n % 10;
+		n = n / 10;
+		if (n == 0)
+		{
+			break;
+		}
+		cnt++;
+
+		
+	}
+	for (int i = cnt; i >=1 ; i--)
+	{
+		if (i % 2 == 1)
+		{
+			printf("%d", arr[i]);
+		}
+	}
+	return 0;
+}
