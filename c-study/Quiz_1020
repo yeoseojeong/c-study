@@ -1,0 +1,380 @@
+//A
+
+#include<stdio.h>
+int main()
+{
+     
+    unsigned int x ,y;
+ 
+    scanf("%u %u", &x, &y);
+    unsigned int result;
+    int sum ;
+    int sum_2 ;
+    int cnt = 0;
+    for (int i = 0; i < 32; i++)
+    {
+        sum = (x >>i)&1;
+        sum_2 = (y >>i)&1;
+ 
+        if (sum != sum_2)
+        {
+            cnt++;
+        }
+    }
+    printf("%d", cnt);
+    return 0;
+}
+
+
+//B
+
+#include<stdio.h>
+int main()
+{
+    unsigned int n;
+    unsigned int p, q;
+ 
+    scanf("%u", &n);
+    scanf("%u %u", &p, &q);
+    
+    int sum = 0;
+ 
+    for (int i = p; i <= q; i++)
+    {
+        sum += (n >> i)&1;
+    }
+    printf("%u", sum);
+    return 0;
+}
+
+
+//C
+
+#include <stdio.h>
+ 
+int main() {
+    int N;
+   
+    scanf("%d", &N);
+ 
+    int matrix[21][21];
+    int num = N * N;
+    int row_start = 0, row_end = N - 1;
+    int col_start = 0, col_end = N - 1;
+ 
+    while (row_start <= row_end && col_start <= col_end) {
+        for (int i = col_start; i <= col_end; ++i) {
+            matrix[row_start][i] = num;
+            num--;
+        }
+        row_start++;
+ 
+        for (int i = row_start; i <= row_end; ++i) {
+            matrix[i][col_end] = num;
+            num--;
+        }
+        col_end--;
+ 
+        if (row_start <= row_end) {
+            for (int i = col_end; i >= col_start; --i) {
+                matrix[row_end][i] = num;
+                num--;
+            }
+            row_end--;
+        }
+ 
+        if (col_start <= col_end) {
+            for (int i = row_end; i >= row_start; --i) {
+                matrix[i][col_start] = num;
+                num--;
+            }
+            col_start++;
+        }
+    }
+ 
+ 
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            printf("%3d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+ 
+    return 0;
+}
+
+//D
+
+#include<stdio.h>
+int main()
+{
+    unsigned int x;
+    unsigned int a, b;
+    unsigned int mask=0;
+ 
+    scanf("%u", &x);
+    scanf("%u %u", &a, &b);
+ 
+    for (int i = a; i <= b; i++)
+    {
+        mask |= (1 << i);
+    }
+    printf("%u", x | mask);
+    return 0;
+}
+
+//E
+
+#include <stdio.h>
+ 
+int main() {
+    int n;
+    scanf("%d", &n);
+ 
+ 
+    int paper[10][10] = { 0 };
+ 
+ 
+    for (int i = 0; i < n; i++)
+    {
+        int color, x, y, width, height;
+        scanf("%d %d %d %d %d", &color, &x, &y, &width, &height);
+ 
+        
+        for (int j = x; j < x + height; j++)
+        {
+       	 for (int k = y; k < y + width; k++)
+      	  	{
+        
+             
+                paper[j][k] = color;
+            }
+        }
+    }
+ 
+ 
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            printf("%d ", paper[i][j]);
+        }
+        printf("\n");
+    }
+ 
+    return 0;
+}
+
+//F
+
+#include <stdio.h>
+ 
+int main() {
+    unsigned char data[10];
+    int p;
+ 
+    for (int i = 0; i < 10; i++)
+    {
+        scanf("%hhu", &data[i]);
+    }
+ 
+    scanf("%d", &p);
+ 
+   
+    unsigned short result = 0;
+ 
+    for (int i = 0; i < 2; i++)
+    {
+        result += data[p - 1 + i] << (8 * i);
+    }
+ 
+    printf("%u\n", result);
+ 
+    return 0;
+}
+
+//G
+#include <stdio.h>
+ 
+int main() {
+    unsigned char array[12];
+    int shift, i, j;
+ 
+    for (i = 0; i < 12; i++) 
+    {
+        scanf("%hhu", &array[i]);
+    }
+ 
+    scanf("%d", &shift);
+ 
+    for (i = 0; i < shift; i++) 
+    {
+ 
+        unsigned char carry = 0;
+        for (j = 5; j >= 0; j--) 
+        {
+            unsigned char new_carry = (array[j] & 0x80) >> 7;
+            array[j] = (array[j] << 1) | carry;
+            carry = new_carry;
+        }
+ 
+        carry = 0;
+        for (j = 6; j < 12; j++)
+        {
+            unsigned char new_carry = array[j] & 0x01;
+            array[j] = (array[j] >> 1) | (carry << 7);
+            carry = new_carry;
+        }
+    }
+ 
+    for (i = 0; i < 12; i++) 
+    {
+        printf("%hhu ", array[i]);
+    }
+    printf("\n");
+ 
+    return 0;
+}
+
+//H
+
+#include<stdio.h>
+int main()
+{
+    char n[101];
+    scanf("%s", &n);
+    int sum = 0;
+    int len = 0;
+    while (n[len] != NULL)
+    {
+        len++;
+    }
+    for (int i = 0; i < len; i++)
+    {
+        sum += n[i];
+    }
+ 
+    if (sum % 3 == 0)
+    {
+        printf("1");
+    }
+    else
+    {
+        printf("0");
+    }
+ 
+    printf("%d", len);
+ 
+    return 0;
+}
+
+//I
+
+#include <stdio.h>
+ 
+int main() {
+    int N, M;
+    scanf("%d %d", &N, &M);
+    int R[101][101], G[101][101], B[101][101];
+    int gray[101][101];
+ 
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &R[i][j]);
+        }
+    }
+    for (int i = 0; i <M; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &G[i][j]);
+        }
+    }
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &B[i][j]);
+        }
+    }
+ 
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            gray[i][j] = (R[i][j] + G[i][j] + B[i][j]) / 3;
+        }
+    }
+ 
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d ", gray[i][j]);
+        }
+        printf("\n");
+    }
+ 
+    return 0;
+}
+
+//J
+
+#include <stdio.h>
+ 
+int main() {
+    char x[101], y[101], result[102];
+    int len1 = 0, len2 = 0;
+    int carry = 0, sum = 0;
+    int i = 0, j = 0, k = 0;
+ 
+    scanf("%s", x);
+    scanf("%s", y);
+ 
+    while (x[len1] != NULL) {
+        len1++;
+    }
+ 
+    while (y[len2] != NULL) {
+        len2++;
+    }
+ 
+    while (i < len1 / 2) {
+        char temp = x[i];
+        x[i] = x[len1 - i - 1];
+        x[len1 - i - 1] = temp;
+        i++;
+    }
+ 
+    i = 0;
+    while (i < len2 / 2) {
+        char temp = y[i];
+        y[i] = y[len2 - i - 1];
+        y[len2 - i - 1] = temp;
+        i++;
+    }
+ 
+    i = 0;
+    while (i < len1 || i < len2) {
+        sum = carry;
+        if (i < len1) {
+            sum += x[i] - '0';
+        }
+        if (i < len2) {
+            sum += y[i] - '0';
+        }
+        result[i] = sum % 10 + '0';
+        carry = sum / 10;
+        i++;
+    }
+ 
+    if (carry) {
+        result[i] = carry + '0';
+        i++;
+    }
+ 
+    result[i] = NULL;
+ 
+    while (j < i / 2) {
+        char temp = result[j];
+        result[j] = result[i - j - 1];
+        result[i - j - 1] = temp;
+        j++;
+    }
+ 
+    printf("%s\n", result);
+ 
+    return 0;
+}
