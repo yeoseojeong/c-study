@@ -1,0 +1,357 @@
+//A
+#include <stdio.h>
+
+void reverse(unsigned int* i, unsigned int* j, int* k) {
+
+    // Swap i and j
+    int temp = *i;
+    *i = *j;
+    *j = temp;
+
+    // Find the length of array k
+    int len = 0;
+    while (k[len] >= 0) {
+        len++;
+    }
+
+    // Reverse the array k
+    int temp_2;
+    for (int m = 0; m < len / 2; m++) {
+        temp_2 = k[m];
+        k[m] = k[len - m - 1];
+        k[len - m - 1] = temp_2;
+    }
+}
+
+int main() {
+    int k[100] = { 0, };
+    unsigned int i = 0, j = 0;
+    int n = 0, idx = 0;
+
+    scanf("%d %d", &i, &j);
+    while (1) {
+        scanf("%d", &n);
+        k[idx] = n;
+        if (n < 0) {
+            break;
+        }
+        idx++;
+    }
+
+    reverse(&i, &j, k);
+
+    printf("%d %d ", i, j);
+    idx = 0;
+    while (1) {
+        printf("%d ", k[idx]);
+        if (k[idx] < 0) {
+            break;
+        }
+        idx++;
+    }
+
+    return 0;
+}
+
+
+//B
+
+#include <stdio.h>
+ 
+int main() {
+    unsigned int n;
+    scanf("%u", &n);
+ 
+ 
+    unsigned char* ptr = (unsigned char*)&n;
+    for (int i = 0; i < 4; i++) {
+        printf("%u ", (unsigned int)ptr[i]);
+    }
+    printf("\n");
+ 
+    return 0;
+}
+ 
+
+
+//C
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+void compression(char* sequence, char* result) {
+    int sequence_length = strlen(sequence);
+    int result_length = 0;
+ 
+    for (int i = 0; i < sequence_length; i++) {
+        char current_char = sequence[i];
+        int count = 1;
+ 
+        // 현재 문자와 다음 문자가 같은 동안 개수를 세어줌
+        while (i < sequence_length - 1 && sequence[i] == sequence[i + 1]) {
+            count++;
+            i++;
+        }
+ 
+        // 개수를 문자열로 변환하여 결과에 추가
+        char count_str[10];
+        sprintf(count_str, "%d", count);
+ 
+        // 결과에 현재 문자와 개수를 추가
+        result[result_length++] = current_char;
+        strcat(result, count_str);
+        result_length += strlen(count_str);
+    }
+    result[result_length] = '\0'; // 문자열 끝에 널 문자를 추가
+}
+ 
+int main() {
+    char sequence[101];
+    char result[201] = "";
+ 
+    scanf("%100s", sequence);
+    compression(sequence, result);
+ 
+    printf("%s\n", result);
+ 
+    return 0;
+}
+
+
+
+//D
+
+#include <stdio.h>
+ 
+void get_integers(int n, unsigned int* p)
+{
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%u", &p[i]);
+    }
+}
+ 
+int main(int argc, char const* argv[])
+{
+    int n;
+    unsigned int arr[100];
+    scanf("%d", &n);
+    get_integers(n, arr);
+    while (1)
+    {
+        scanf("%d", &n);
+        if (n < 0)
+        {
+            break;
+        }
+        printf("%u ", arr[n]);
+    }
+    return 0;
+}
+
+
+//E
+
+#include <stdio.h>
+
+int main() {
+    unsigned char a;
+    unsigned short b;
+    unsigned char c;
+    unsigned int result = 0;
+
+    // 입력 받기
+    scanf("%hhu %hu %hhu", &a, &b, &c);
+
+    // 포인터를 사용하여 데이터 조합
+    unsigned char* ptr_a = (unsigned char*)&result;
+    unsigned short* ptr_b = (unsigned short*)((unsigned char*)&result + 1);
+    unsigned char* ptr_c = (unsigned char*)&result + 3;
+
+    // 데이터 조합
+    *ptr_a = a;
+    *ptr_b = b;
+    *ptr_c = c;
+
+    // 결과 출력
+    printf("%u", result);
+
+    return 0;
+}
+
+
+//F
+
+#include <stdio.h>
+
+int main() {
+    unsigned int input[4];
+    unsigned int data[3];
+
+    for (int i = 0; i < 4; i++) {
+        scanf("%u", &input[i]);
+    }
+
+    unsigned char* p = (unsigned char*)data; 
+
+    for (int i = 0; i < 4; i++) {
+        unsigned char* pi = (unsigned char*)&input[i]; 
+        *p = *pi; 
+        p++; 
+        pi++; 
+        *p = *pi; 
+        p++; 
+        pi++; 
+        *p = *pi; 
+        p++;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        printf("%u ", data[i]); 
+    }
+
+return 0;
+}
+
+
+//G
+#include <stdio.h>
+
+int main() {
+	unsigned int input[3];
+	unsigned int data[4] = { 0 };
+
+	for (int i = 0; i < 3; i++)
+	{
+		scanf("%u", &input[i]);
+	}
+
+
+	unsigned char* p = (unsigned char*)data;
+	unsigned char* pi = (unsigned char*)input;
+	for (int i = 0; i < 12; i++) {
+		*p = *pi;
+		pi++;
+		p++;
+		if (i % 3 == 2)
+			p++;
+	}
+
+	for (int i = 0; i < 4; i++) {
+		printf("%u ", data[i]);
+	}
+
+	return 0;
+}
+
+//H
+
+#include <stdio.h>
+
+int main() {
+    unsigned char data[12];
+    unsigned char a_n[12];
+    unsigned char res[12];
+
+    // data 입력 받음
+    for (int i = 0; i < 12; i++) {
+        scanf("%hhu", &data[i]);
+    }
+
+    // a_n 입력 받음
+    for (int i = 0; i < 12; i++) {
+        scanf("%hhu", &a_n[i]);
+    }
+
+    for (int i = 0; i < 12; i++) {
+        res[i] = data[a_n[i]];
+    }
+    unsigned int* p;
+    p = res;
+
+   
+
+
+    printf("%u %u %u", *p, *(p + 1), *(p + 2));
+
+    return 0;
+}
+
+
+//I
+
+#include <stdio.h>
+
+int main() {
+    char sentence[100];
+    printf("문장을 입력하세요: ");
+    gets_s(sentence);
+
+    int i = 0;
+    while (sentence[i] != '\0')
+    {
+        if (sentence[i] == 'I' && sentence[i + 1] == 'N' && sentence[i + 2] == 'U') {
+            printf("Incheon National University");
+            i += 3;
+        }
+
+        else 
+        {
+            printf("%c", sentence[i]);
+            i++;
+        }
+    }
+
+    return 0;
+}
+
+//J
+
+#include <stdio.h>
+ 
+#define ROW 6
+#define COL 6
+ 
+int main() {
+    // 6x6 크기의 배열 선언
+    unsigned char arr[ROW][COL];
+ 
+    // 배열 입력 받기
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            scanf("%hhu", &arr[i][j]); // 배열 원소 입력
+        }
+    }
+ 
+    int n;
+    scanf("%d", &n); // n 입력 받기
+    n = -n;
+    // 배열 요소를 n칸씩 밀어내는 처리
+    int total = ROW * COL;
+    if (n >= 0) {
+        n = n % total;
+    }
+    else {
+        n = (total - (-n) % total) % total;
+    }
+ 
+    // 배열 순회 및 출력
+    for (int i = 0; i < total; i++) {
+        int currentRow = i / COL; // 현재 행 계산
+        int currentCol = i % COL; // 현재 열 계산
+        int newIndex = (i + n) % total; // 새로운 인덱스 계산
+        int newRow = newIndex / COL; // 새로운 행 계산
+        int newCol = newIndex % COL; // 새로운 열 계산
+ 
+        // 형식에 맞춰 배열 요소 출력
+        printf("%3d ", arr[newRow][newCol]);
+ 
+        // 현재 열이 마지막 열이면 개행
+        if (currentCol == COL - 1) {
+            printf("\n");
+        }
+    }
+ 
+    return 0; // 프로그램 종료
+}
