@@ -1,0 +1,453 @@
+//A
+
+#include <stdio.h>
+#include <stdlib.h>
+ 
+// ============== 코드 작성 영역 ==============
+ 
+void printstring(char** data)
+{
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%s\n", data[i]);
+    }
+}
+ 
+// ============================================
+ 
+int main(int argc, char const* argv[])
+{
+    char* data[10];
+    for (int i = 0; i < 10; i++)
+    {
+        data[i] = malloc(sizeof(char) * 100);
+        scanf("%s", data[i]);
+    }
+ 
+    printstring(data);
+ 
+    return 0;
+}
+
+
+//B
+
+#define _CRT_SECURE_NO_WARNINGS
+#define _MSIZE(ptr) malloc_usable_size(ptr)
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+ 
+// ============== 코드 작성 영역 ==============
+ 
+void allocate_memory(int** p, int n) {
+    *p = (int)malloc(sizeof(int) * n);
+}
+ 
+// ============================================
+ 
+int main() {
+    int* p = NULL;
+    int n;
+    scanf("%d", &n);
+ 
+    allocate_memory(&p, n);
+ 
+    printf("%zu", _MSIZE(p));
+    free(p);
+    return 0;
+}
+
+
+
+//C
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+ 
+// ============== 코드 작성 영역 ==============
+void generate_format_string(char* str, int a, int b, int c, int d)
+{
+    int arr[4] = { a, b, c, d };
+    int cnt = 0;
+ 
+    for (int i = 0; i < 4; i++)
+    {
+        if (arr[i] == 1)
+        {
+            str[cnt++] = '%';
+            str[cnt++] = 'c';
+            
+        }
+        else if (arr[i] == 2)
+        {
+            str[cnt++] = '%';
+            str[cnt++] = 'd';
+             
+        }
+        else if (arr[i] == 3)
+        {
+            str[cnt++] = '%';
+            str[cnt++] = 'h';
+            str[cnt++] = 'u';
+             
+        }
+        else if (arr[i] == 4)
+        {
+            str[cnt++] = '%';
+            str[cnt++] = 'h';
+            str[cnt++] = 'h';
+            str[cnt++] = 'u';
+             
+        }
+    }
+ 
+    // 구성된 문자열 끝에 null 종결자 추가
+    str[cnt] = '\0';
+}
+ 
+// ============================================
+ 
+int main(int argc, char const* argv[])
+{
+    int arr[4];
+    int data[4];
+    scanf("%d %d %d %d", arr, arr + 1, arr + 2, arr + 3);
+    scanf("%d %d %d %d", data, data + 1, data + 2, data + 3);
+ 
+    char str[20];
+    generate_format_string(str, arr[0], arr[1], arr[2], arr[3]);
+    printf(str, data[0], data[1], data[2], data[3]);
+ 
+    return 0;
+}
+
+
+//D
+
+#include <stdio.h>
+ 
+// ============== 코드 작성 영역 ==============
+ 
+int strchr_start_pos(char* str, char c, int pos)
+{
+    int len = 0;
+ 
+    while (str[len]!=NULL)
+    {
+        len++;
+    }
+ 
+    for (int i = pos; i < len; i++)
+    {
+        if (str[i] == c)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+ 
+// ============================================
+ 
+int main(int argc, char const* argv[])
+{
+    char str[101];
+    char c;
+    int n;
+    gets(str);
+    scanf("%d %c", &n, &c);
+    printf("%d", strchr_start_pos(str, c, n));
+    return 0;
+}
+
+
+//E
+
+#include <stdio.h>
+#include <stdlib.h>  
+ 
+void strchr_start_pos(char** str, int n) {
+    for (int i = n - 1; i >= 0; i--) {
+        printf("%s\n", str[i]);
+    }
+}
+ 
+int main() {
+    int n;
+ 
+    scanf("%d", &n);
+ 
+    char** str = (char**)malloc(n * sizeof(char*));
+ 
+    for (int i = 0; i < n; i++) 
+    {
+        
+        char buffer[100];
+ 
+        scanf("%s", buffer);
+ 
+        str[i] = (char*)malloc((strlen(buffer) + 1) * sizeof(char));
+        strcpy(str[i], buffer);
+    }
+ 
+    strchr_start_pos(str, n);
+ 
+    free(str);
+ 
+    return 0;
+}
+
+
+
+//F
+
+#include <stdio.h>
+ 
+// ============== 코드 작성 영역 ==============
+unsigned int str2uint(char* str)
+{
+    unsigned int result = 0;
+ 
+    while (*str != '\0')
+    {
+        if (*str >= '0' && *str <= '9')
+        {
+            result = result * 10 + (*str - '0');
+        }
+        else
+        {
+            break;
+        }
+ 
+        str++;
+    }
+ 
+    return result;
+}
+// ============================================
+ 
+int main(int argc, char const* argv[])
+{
+    char str[12];
+    scanf("%s", str);
+    printf("%u", str2uint(str));
+    return 0;
+}
+
+
+
+//G
+
+#include <stdio.h>
+ 
+// ============== 코드 작성 영역 ==============
+char* uint2str_with_jinbeob(char* str, unsigned int n, int x)
+{
+    // 0이 입력되면 바로 문자열 "0"을 반환
+    if (n == 0)
+    {
+        str[0] = '0';
+        str[1] = NULL;
+        return str;
+    }
+ 
+    int index = 0;
+    // 진법 변환 수행
+    while (n > 0)
+    {
+        int remainder = n % x;
+        if (remainder < 10)
+        {
+            str[index] = '0' + remainder;
+        }
+        else
+        {
+            str[index] = 'A' + (remainder - 10); // 10 이상의 경우 'A'부터 표현
+        }
+        index++;
+        n /= x;
+    }
+ 
+    int start = 0;
+    int end = index - 1;
+    while (start < end)
+    {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+ 
+    str[index] = NULL;
+ 
+    return str;
+}
+// ============================================
+ 
+int main(int argc, char const* argv[])
+{
+    unsigned int t;
+    int n;
+    char str[50] = { 0 };
+    scanf("%u %d", &t, &n);
+    printf("%s", uint2str_with_jinbeob(str, t, n));
+    return 0;
+}
+
+
+//H
+
+
+#include <stdio.h>
+ 
+// ============== 코드 작성 영역 ==============
+char* enhanced_strstr(char* str, char* str2)
+{
+    static char* prevStr = NULL; // 이전에 검색한 문자열의 끝을 저장
+ 
+    // 초기 검색 또는 이전 문자열이 NULL인 경우, 새로운 문자열에서 검색 시작
+    if (str != NULL)
+    {
+        prevStr = str;
+    }
+    else if (prevStr == NULL)
+    {
+        return NULL; // 이전에 검색한 문자열이 없으면 NULL 반환
+    }
+ 
+    char* result = prevStr;
+    char* ptr1, * ptr2;
+ 
+    // str2가 빈 문자열인 경우, str의 시작 위치를 반환
+    if (*str2 == '\0')
+    {
+        return prevStr;
+    }
+ 
+    while (*result != '\0')
+    {
+        ptr1 = result;
+        ptr2 = str2;
+ 
+        // str2와 일치하는 부분을 찾을 때까지 검색
+        while (*ptr1 != '\0' && *ptr2 != '\0' && *ptr1 == *ptr2)
+        {
+            ptr1++;
+            ptr2++;
+        }
+ 
+        // str2의 모든 문자가 일치하는 경우, 시작 위치 반환
+        if (*ptr2 == '\0')
+        {
+            prevStr = result + 1; // 다음 검색을 위해 이전 문자열의 끝 갱신
+            return result;
+        }
+ 
+        result++;
+    }
+ 
+    return NULL; // 일치하는 부분을 찾지 못한 경우 NULL 반환
+}
+// ============================================
+ 
+int main(int argc, char const* argv[])
+{
+    char str1[104];
+    char str2[104];
+    gets(str1);
+    gets(str2);
+    char* p = enhanced_strstr(str1, str2);
+    if (p == NULL)
+    {
+        printf("yatppi!");
+    }
+    while (p)
+    {
+        printf("%s\n", p);
+        p = enhanced_strstr(NULL, str2);
+    }
+    return 0;
+}
+
+
+//I
+
+
+#include <stdio.h>
+ 
+// ============== 코드 작성 영역 ==============
+int word_count(char* str)
+{
+    int count = 0;
+    int inWord = 0; // 단어 안에 있는지 여부를 나타내는 플래그
+ 
+    while (*str != '\0')
+    {
+        // 현재 문자가 공백인 경우
+        if (*str == ' ' || *str == '\t' || *str == '\n')
+        {
+            inWord = 0; // 단어 안에 있지 않음
+        }
+        else
+        {
+            // 단어 안에 있지 않은 상태에서 첫 문자를 발견하면 단어 시작으로 처리
+            if (!inWord)
+            {
+                count++;
+                inWord = 1; // 단어 안에 있음
+            }
+        }
+ 
+        str++;
+    }
+ 
+    return count;
+}
+// ============================================
+ 
+int main(int argc, char const* argv[])
+{
+    char str[104] = { 0 };
+    gets(str);
+    printf("%d", word_count(str));
+    return 0;
+}
+
+
+//J
+
+#include <stdio.h>
+ 
+int main() {
+    unsigned int input[101];
+    unsigned int data[202] = { 0 };
+    int n;
+ 
+    scanf("%d", &n);
+ 
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%u", &input[i]);
+    }
+ 
+ 
+    unsigned char* p = (unsigned char*)data;
+    unsigned char* pi = (unsigned char*)input;
+    for (int i = 0; i < n * 4; i++) {
+        *p = *pi;
+        pi++;
+        p++;
+        if (i % 3 == 2)
+            p++;
+    }
+ 
+     
+ 
+    int len = (n * 4) % 3 != 0 ? ((n * 4) / 3) + 1 : ((n * 4) / 3);
+    for (int i = 0; i < len; i++) {
+        printf("%u ", data[i]);
+    }
+ 
+}
